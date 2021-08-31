@@ -1,4 +1,5 @@
-# Welcome to Shengchao Lin's Homepage
+Welcome to Shengchao Lin's Homepage
+===================================
 
 <img align="left" width="180" height="240" src="image/me.jpg" style="margin:0px 15px">
 
@@ -34,7 +35,7 @@ You can find my [CV](files/Shengchao_Lin_CV.pdf) here.
     - [School of Mathematical Sciences](http://www.math.pku.edu.cn/en)
       , [Peking University](http://english.pku.edu.cn/)
 
-### Research
+### Previous Research
 
 - Wind power forecasting for wind farms
   **Advisor**: [Zaiwen Wen](http://bicmr.pku.edu.cn/~wenzw)

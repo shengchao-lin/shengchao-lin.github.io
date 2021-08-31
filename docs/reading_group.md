@@ -1,4 +1,5 @@
-## Reading Group
+Reading Group
+=============
 
 I co-organized a reading group discussing problems from applied math. Topic varies from numerical analysis to
 optimization and operations research, etc.
