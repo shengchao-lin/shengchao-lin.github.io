@@ -1,5 +1,6 @@
-Welcome to Shengchao Lin's Homepage
-===================================
+---
+layout: default
+---
 
 <img align="left" width="180" height="240" src="image/me.jpg" style="margin:0px 15px">
 
