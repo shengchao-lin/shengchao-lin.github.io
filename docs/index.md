@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<img align="left" width="180" height="240" src="image/me.jpg" style="margin:0px 15px">
+<img align="left" width="180" height="240" src="image/Me-1.jpg" style="margin:0px 15px">
 
 **Shengchao Lin**
 
