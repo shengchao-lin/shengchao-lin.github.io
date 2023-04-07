@@ -2,7 +2,7 @@ main:
   - title: "Homepage"
     url: /index/
   - title: "Reading Group"
-    url: /reading_group/
+    url: /reading_group/index.html
 #  - title: "Categories"
 #    url: /categories/
 #  - title: "Tags"
@@ -11,5 +11,5 @@ main:
 #    url: /page-archive/
 #  - title: "Collections"
 #    url: /collection-archive/
-  - title: "External Link"
-    url: https://google.com
+#  - title: "External Link"
+#    url: https://google.com

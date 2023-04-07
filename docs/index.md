@@ -49,4 +49,4 @@ You can find my [CV](files/Shengchao_Lin_CV.pdf) here.
 
 ### Others
 
-- I am co-organized a [reading group](_docs/reading_group.md) covering topics from applied mathematics.
+- I am co-organized a [reading group](reading_group.md) covering topics from applied mathematics.
