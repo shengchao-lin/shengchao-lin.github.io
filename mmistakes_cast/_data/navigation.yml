@@ -1,0 +1,6 @@
+# main links
+main:
+  - title: "Quick-Start Guide"
+    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  - title: "Welcome to Jekyll"
+    url: /jekyll/update/welcome-to-jekyll/

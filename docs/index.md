@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<img align="left" width="180" height="240" src="assets/images/Me-1.jpg" style="margin:0px 15px">
+<img align="left" width="180" height="240" src="../mmistakes_cast/assets/images/Me-1.jpg" style="margin:0px 15px">
 
 
 
