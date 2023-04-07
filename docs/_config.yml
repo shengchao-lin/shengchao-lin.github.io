@@ -1,6 +1,5 @@
-#remote_theme: "mmistakes/minimal-mistakes@4.24.0"
-theme: minimal-mistakes-jekyll
-#theme: jekyll-theme-cayman
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+#theme: minimal-mistakes-jekyll
 title: Shengchao Lin's Homepage
 locale: "en-US"
 url: "https://shengchao-lin.github.io"
