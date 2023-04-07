@@ -7,46 +7,69 @@ layout: default
 
 
 # **Shengchao Lin**
-**[Department of Computational and Applied Mathematics](https://www.caam.rice.edu/)**
-**[MATLAB Optimization Toolbox]()**
+[Department of Computational and Applied Mathematics, **Rice University**](https://cmor.rice.edu/)
 
-My research and work focus on optimization theory and are concerned with mainly the design, analysis, and implementation
-of mathematical optimization algorithms. 
-Research areas include optimal control of partial differential equations, parallel method for training recurrent neural network.
-Work included 
+[MATLAB Optimization Toolbox, **MathWorks**](https://www.mathworks.com/products/optimization.html)
 
-You can find my [CV](files/Shengchao_Lin_CV.pdf) here.
+My research and work focus on nonlinear optimization theories and the implementation
+of mathematical optimization algorithms.
 
-### Contact Info
+[//]: # (You can find my [CV]&#40;files/Shengchao_Lin_CV.pdf&#41; here.)
 
-- **Office**: Duncan Hall 2118, Rice University
-- **Email**: shengchao.lin@rice.edu
+[//]: # ()
+[//]: # (### Contact Info)
 
-### Education
+[//]: # ()
+[//]: # (- **Office**: Duncan Hall 2118, Rice University)
 
-- **Ph.D. Candidate** (2017.08 - Present)
-    - [Department of Computational and Applied Mathematics](https://www.caam.rice.edu/)
-      , [Rice University](https://www.rice.edu/)
-    - **Advisor**: [Matthias Heinkenschloss](http://www.caam.rice.edu/~heinken/)
+[//]: # (- **Email**: shengchao.lin@rice.edu)
 
-- **M.A.** (December, 2019)
-    - [Department of Computational and Applied Mathematics](https://www.caam.rice.edu/)
-      , [Rice University](https://www.rice.edu/)
-    - **Thesis**: *Parareal-Based Preconditioners for Linear-Quadratic Optimal Control Problems*
-    - **Advisor**: [Matthias Heinkenschloss](http://www.caam.rice.edu/~heinken/)
+[//]: # ()
+[//]: # (### Education)
 
-- **B.S.** (July, 2017)
-    - [School of Mathematical Sciences](http://www.math.pku.edu.cn/en)
-      , [Peking University](http://english.pku.edu.cn/)
+[//]: # ()
+[//]: # (- **Ph.D. Candidate** &#40;2017.08 - Present&#41;)
 
-### Previous Research
+[//]: # (    - [Department of Computational and Applied Mathematics]&#40;https://www.caam.rice.edu/&#41;)
 
-- Wind power forecasting for wind farms
-  **Advisor**: [Zaiwen Wen](http://bicmr.pku.edu.cn/~wenzw)
-  , [Pingwen Zhang](http://www.math.pku.edu.cn/teachers/zhangpw/private/homepage/ )
-- Structured linearization and algorithms for gyroscopic and palindromic eigenvalue problems
-  **Advisor**: [Yunfeng Cai](http://dsec.pku.edu.cn/~yfcai/ )
+[//]: # (      , [Rice University]&#40;https://www.rice.edu/&#41;)
 
-### Others
+[//]: # (    - **Advisor**: [Matthias Heinkenschloss]&#40;http://www.caam.rice.edu/~heinken/&#41;)
 
-- I am co-organized a [reading group](reading_group.md) covering topics from applied mathematics.
+[//]: # ()
+[//]: # (- **M.A.** &#40;December, 2019&#41;)
+
+[//]: # (    - [Department of Computational and Applied Mathematics]&#40;https://www.caam.rice.edu/&#41;)
+
+[//]: # (      , [Rice University]&#40;https://www.rice.edu/&#41;)
+
+[//]: # (    - **Thesis**: *Parareal-Based Preconditioners for Linear-Quadratic Optimal Control Problems*)
+
+[//]: # (    - **Advisor**: [Matthias Heinkenschloss]&#40;http://www.caam.rice.edu/~heinken/&#41;)
+
+[//]: # ()
+[//]: # (- **B.S.** &#40;July, 2017&#41;)
+
+[//]: # (    - [School of Mathematical Sciences]&#40;http://www.math.pku.edu.cn/en&#41;)
+
+[//]: # (      , [Peking University]&#40;http://english.pku.edu.cn/&#41;)
+
+[//]: # ()
+[//]: # (### Previous Research)
+
+[//]: # ()
+[//]: # (- Wind power forecasting for wind farms)
+
+[//]: # (  **Advisor**: [Zaiwen Wen]&#40;http://bicmr.pku.edu.cn/~wenzw&#41;)
+
+[//]: # (  , [Pingwen Zhang]&#40;http://www.math.pku.edu.cn/teachers/zhangpw/private/homepage/ &#41;)
+
+[//]: # (- Structured linearization and algorithms for gyroscopic and palindromic eigenvalue problems)
+
+[//]: # (  **Advisor**: [Yunfeng Cai]&#40;http://dsec.pku.edu.cn/~yfcai/ &#41;)
+
+[//]: # ()
+[//]: # (### Others)
+
+[//]: # ()
+[//]: # (- I am co-organized a [reading group]&#40;reading_group.md&#41; covering topics from applied mathematics.)

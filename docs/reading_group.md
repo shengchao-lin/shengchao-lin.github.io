@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Reading Group
-permalink: /reading_group/
 ---
 
 I co-organized a reading group discussing problems from applied math. Topic varies from numerical analysis to
