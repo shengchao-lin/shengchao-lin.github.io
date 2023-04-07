@@ -1,8 +1,6 @@
 main:
-  - title: "Homepage"
-    url: /index/
   - title: "Reading Group"
-    url: /reading_group/index.html
+    url: /reading_group/
 #  - title: "Categories"
 #    url: /categories/
 #  - title: "Tags"
@@ -13,3 +11,11 @@ main:
 #    url: /collection-archive/
 #  - title: "External Link"
 #    url: https://google.com
+
+docs:
+  - title: Shengchao Lin's Homepage
+    children:
+#      - title: "About me"
+#        url: /docs/quick-start-guide/
+      - title: "Reading group"
+        url: /readme_group/
