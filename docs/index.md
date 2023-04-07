@@ -2,15 +2,18 @@
 layout: default
 ---
 
-<img align="left" width="180" height="240" src="image/Me-1.jpg" style="margin:0px 15px">
+<img align="left" width="180" height="240" src="assets/images/Me-1.jpg" style="margin:0px 15px">
 
-**Shengchao Lin**
 
-[Department of Computational and Applied Mathematics](https://www.caam.rice.edu/)
-, [Rice University](https://www.rice.edu/)
 
-My research is concerned with mainly the design and analysis of mathematical optimization algorithms. Specific research
-areas include optimal control of partial differential equations, parallel method for training recurrent neural network.
+# **Shengchao Lin**
+**[Department of Computational and Applied Mathematics](https://www.caam.rice.edu/)**
+**[MATLAB Optimization Toolbox]()**
+
+My research and work focus on optimization theory and are concerned with mainly the design, analysis, and implementation
+of mathematical optimization algorithms. 
+Research areas include optimal control of partial differential equations, parallel method for training recurrent neural network.
+Work included 
 
 You can find my [CV](files/Shengchao_Lin_CV.pdf) here.
 
