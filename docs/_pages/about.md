@@ -4,7 +4,7 @@ permalink: /about/
 title: About
 author_profile: true
 header:
-    overlay_image: /assets/images/Me-1.jpg
+    overlay_image: /assets/images/Natick_Spring-8.jpg
     caption: "Photo by Shengchao Lin."
 classes: wide
 last_modified_at: April 7, 2023 
