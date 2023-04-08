@@ -12,7 +12,7 @@ defaults:
   # _docs
   - scope:
       path: ""
-      type: docs
+      type: old_docs
     values:
       sidebar:
-        nav: "docs"
+        nav: "old_docs"

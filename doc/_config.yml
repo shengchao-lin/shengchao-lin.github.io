@@ -10,9 +10,9 @@
 # Review documentation to determine if you should use `theme` or `remote_theme`
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
-theme                    : "minimal-mistakes-jekyll"
-# remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+#theme                    : "minimal-mistakes-jekyll"
+remote_theme           : "mmistakes/minimal-mistakes"
+minimal_mistakes_skin    : "sunrise" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
@@ -22,7 +22,7 @@ subtitle                 : # site tagline that appears below site title in masth
 name                     : "Shengchao Lin"
 description              : "An amazing website."
 url                      : #"https://shengchao-lin.github.io"
-baseurl                  : #"/mmistakes_cast"
+baseurl                  : #"/doc"
 repository               : "shengchao-lin/shengchao-lin.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : "/assets/images/Logo.png"
@@ -106,7 +106,7 @@ analytics:
 author:
   name             : "Shengchao Lin"
   avatar           : "/assets/images/Me-1.jpg"
-  bio              : "I am an **amazing** person."
+  bio              : "Math, Optimization, Implementation"
   location         : "Massachusetts, United States"
   email            :
   links:
@@ -181,7 +181,7 @@ exclude:
   - Rakefile
   - README
   - tmp
-  - /docs # ignore Minimal Mistakes /docs
+  - /old_docs # ignore Minimal Mistakes /old_docs
   - /test # ignore Minimal Mistakes /test
 keep_files:
   - .git
@@ -247,9 +247,9 @@ whitelist:
 #  Path (examples)
 #  - Archive page should exist at path when using Liquid method or you can
 #    expect broken links (especially with breadcrumbs enabled)
-#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
-#  - <base_path>/categories/my-awesome-category/index.html ~> path: /categories/
-#  - <base_path>/my-awesome-category/index.html ~> path: /
+#  - <base_path>/tags/my-awesome-tag/index.md ~> path: /tags/
+#  - <base_path>/categories/my-awesome-category/index.md ~> path: /categories/
+#  - <base_path>/my-awesome-category/index.md ~> path: /
 category_archive:
   type: liquid
   path: /categories/

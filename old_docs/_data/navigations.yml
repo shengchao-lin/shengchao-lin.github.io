@@ -12,10 +12,10 @@
 ##  - title: "External Link"
 ##    url: https://google.com
 #
-#docs:
+#old_docs:
 #  - title: Shengchao Lin's Homepage
 #    children:
 ##      - title: "About me"
-##        url: /docs/quick-start-guide/
+##        url: /old_docs/quick-start-guide/
 #      - title: "Reading group"
 #        url: /pages/reading_group/
