@@ -32,6 +32,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
 </script>
 
+<!--TODO Change the MathJax service-->
 <script type="text/x-mathjax-config">
    MathJax.Hub.Config({
      extensions: ["tex2jax.js"],
@@ -43,13 +44,6 @@
      },
      "HTML-CSS": { availableFonts: ["TeX"] },
      displayAlign: "center",
+     TeX: { equationNumbers: { autoNumber: "AMS" } }
    });
-</script>
-
-<script type="text/javascript">
-  window.MathJax = {
-    tex: {
-      tags: 'ams'
-    }
-  };
 </script>
