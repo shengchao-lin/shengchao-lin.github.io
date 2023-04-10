@@ -23,3 +23,25 @@
     <script src="{{ script | relative_url }}"></script>
   {% endfor %}
 {% endif %}
+
+<!--MathJax-->
+<script>
+    MathJax = {
+        loader: {
+            load: ['input/tex-base', 'output/svg', 'ui/menu', '[tex]/require', '[tex]/ams'],
+        },
+        tex: {
+            packages: {'[+]': ['ams']},                 // Load the ams extension
+            inlineMath: [['$', '$'], ['\\(', '\\)']],   // Configures MathJax’s TeX input component to use $...$ and \(...\) as delimiters for inline-math.
+            displayMath: [['$$','$$'], ["\\[","\\]"]],  // Configures MathJax’s TeX input component to use $$...$$ and \[...\] as delimiters for display-math.
+            tags: 'ams'                                 // Automatic equation numbering
+        },
+        svg: {
+            fontCache: 'global',                        // SVG output component to use a global font
+            displayAlign: 'center'                      // Put display math center aligned
+        }
+    };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
