@@ -4,11 +4,12 @@ title: "MathJax"
 permalink: /math/ 
 classes: wide
 ---
-# Section 1
+# Automatic Equation Numbering
 The equation should show up like this
-\begin{equation} \label{MEE} \tag{Mass-Energy Equivalence}
-    E = mc^2.
-\end{equation} 
+\begin{equation} \label{pythagoras}
+a^2 + b^2 = c^2.
+\end{equation}
+
 And it can be referred by \eqref{MEE}.
 
 Equation without a tag is numbered automatically.
@@ -17,8 +18,14 @@ Equation without a tag is numbered automatically.
 \end{equation}
 Euler's identity is \eqref{EId}. 
 
-# Section 2
+# Custom Tag
 Equation in another section, like Pythagoras theorem \eqref{pythagoras}
-\begin{equation} \label{pythagoras}
-    a^2 + b^2 = c^2.
+\begin{equation} \label{MEE} \tag{Mass-Energy Equivalence}
+E = mc^2.
 \end{equation}
+
+# LaTeX Macro
+Macros can be used as follows
+\\[
+    \BR, \ddx{f}.
+\\]

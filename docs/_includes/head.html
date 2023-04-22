@@ -3,14 +3,14 @@
 {% include seo.html %}
 
 {% unless site.atom_feed.hide %}
-  <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
+<link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
 {% endunless %}
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+    document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
 </script>
 
 <!-- For all browsers -->
@@ -19,9 +19,9 @@
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 {% if site.head_scripts %}
-  {% for script in site.head_scripts %}
-    <script src="{{ script | relative_url }}"></script>
-  {% endfor %}
+{% for script in site.head_scripts %}
+<script src="{{ script | relative_url }}"></script>
+{% endfor %}
 {% endif %}
 
 <!--MathJax-->
@@ -34,7 +34,12 @@
             packages: {'[+]': ['ams']},                 // Load the ams extension
             inlineMath: [['$', '$'], ['\\(', '\\)']],   // Configures MathJax’s TeX input component to use $...$ and \(...\) as delimiters for inline-math.
             displayMath: [['$$','$$'], ["\\[","\\]"]],  // Configures MathJax’s TeX input component to use $$...$$ and \[...\] as delimiters for display-math.
-            tags: 'ams'                                 // Automatic equation numbering
+            tags: 'ams',                                // Automatic equation numbering
+            macros:                                     // LaTeX macros
+                {
+                    BR: "{\\mathbb{R}}",
+                    ddx: ['\\frac{d#2}{d#1}', 2, 'x']
+                }
         },
         svg: {
             fontCache: 'global',                        // SVG output component to use a global font
@@ -43,5 +48,5 @@
     };
 </script>
 <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
