@@ -7,7 +7,7 @@ header:
     overlay_image: /assets/images/Gallery-16.jpg
     caption: "Photo by Shengchao Lin."
 classes: wide
-last_modified_at: April 23, 2023
+last_modified_at: June 5, 2023
 ---
 
 I got my Ph.D. in Computational and Applied Mathematics at
@@ -15,7 +15,7 @@ I got my Ph.D. in Computational and Applied Mathematics at
 My research lies mainly in parallel methods for PDE constrained optimization and recurrent neural networks. I was 
 co-organizer of a [reading group](/reading-group/). 
 
-I currently work at the Optimization Toolbox team for MATLAB at 
+I am the lead developer in embedded optimization at the Optimization Toolbox team at 
 [**MathWorks**](https://www.mathworks.com/products/optimization.html).
 My works focus on general nonlinear optimization algorithms their deployment in safety critical areas.
 

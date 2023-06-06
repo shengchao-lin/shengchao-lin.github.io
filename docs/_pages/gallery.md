@@ -60,6 +60,13 @@ gallery:
   - url: /assets/images/Gallery-16.jpg
     image_path: /assets/images/Gallery-16.jpg
     title: "Lake, Cochichuate State Park"
+    
+  - url: /assets/images/Gallery-17.jpg
+    image_path: /assets/images/Gallery-17.jpg
+    title: "Sea arch, Wai'anapanapa State Park"
+  - url: /assets/images/Gallery-18.jpg
+    image_path: /assets/images/Gallery-18.jpg
+    title: "Makahiku Falls, Haleakalā National Park"
 ---
 
 {% include gallery layout='half' caption="Shot on **Nikon Z5**." %}
