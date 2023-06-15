@@ -20,7 +20,6 @@ group :jekyll_plugins do
 end
 
 # Build locally
-gem 'rubocop', group: 'development', require: false
 gem "webrick"
 gem "faraday-retry"
 
