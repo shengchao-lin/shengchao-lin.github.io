@@ -17,7 +17,7 @@ co-organizer of a [reading group](/reading-group/).
 
 I am the lead developer in embedded optimization at the Optimization Toolbox team at 
 [**MathWorks**](https://www.mathworks.com/products/optimization.html).
-My works focus on general nonlinear optimization algorithms their deployment in safety critical areas.
+My works focus on general nonlinear optimization algorithms and their deployments.
 
 During my personal time, I enjoy cooking and photography. All pictures used on this website is shot by myself (except 
 for the avatar of course). You can find them in my [**gallery**](/gallery/).
