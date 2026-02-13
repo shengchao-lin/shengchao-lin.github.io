@@ -7,7 +7,7 @@ header:
     overlay_image: /assets/images/Gallery-16.jpg
     caption: "Photo by Shengchao Lin."
 classes: wide
-last_modified_at: June 5, 2023
+last_modified_at: Feb 13, 2026
 ---
 
 I got my Ph.D. in Computational and Applied Mathematics at
