@@ -9,6 +9,4 @@ Instructions for using this repo.
 5. Go to `localhost:4000` to see the built website.
 
 Trouble shooting:
-* If you get errors like "fatal error: 'openssl/ssl.h' file not found", try to get `ssl.h` first. Do `gem install jekyll -- -- with-cppflags=-I/usr/local/opt/openssl/include`.
-
-Recently updated to public for consular review.
+* If you get errors like "fatal error: 'openssl/ssl.h' file not found", try to get `ssl.h` first. Do `gem install jekyll -- -- with-cppflags=-I/usr/local/opt/openssl/include`
