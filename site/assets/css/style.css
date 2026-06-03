@@ -103,7 +103,6 @@ img {
 }
 
 .eyebrow,
-.highlight-grid span,
 .career-path span:first-child {
   margin: 0 0 0.8rem;
   color: var(--accent);
@@ -168,31 +167,6 @@ img {
   margin-top: 0.7rem;
   color: var(--muted);
   font-size: 0.86rem;
-}
-
-.highlight-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border-block: 1px solid var(--line);
-}
-
-.highlight-grid article {
-  min-height: 15rem;
-  padding: clamp(1.2rem, 3vw, 2.25rem);
-  background: var(--surface);
-}
-
-.highlight-grid h2 {
-  margin: 0.65rem 0 0;
-  font-size: clamp(1.35rem, 3vw, 2.15rem);
-  line-height: 1.08;
-}
-
-.highlight-grid p {
-  color: var(--muted);
-  line-height: 1.6;
 }
 
 .career-path {
@@ -359,7 +333,6 @@ img {
   }
 
   .home-hero,
-  .highlight-grid,
   .career-path,
   .image-strip {
     grid-template-columns: 1fr;
