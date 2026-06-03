@@ -130,6 +130,7 @@ img {
   --line-local: rgba(31, 41, 51, 0.16);
   --accent-local: #a64235;
   --hero-image: url("../images/Gallery-17.jpg");
+  --hero-overlay: linear-gradient(90deg, color-mix(in srgb, var(--bg) 90%, transparent), color-mix(in srgb, var(--bg) 54%, transparent));
   background: var(--bg);
   color: var(--text);
 }
@@ -164,7 +165,7 @@ img {
   min-height: calc(100vh - 9rem);
   padding: clamp(2.5rem, 7vw, 7rem) clamp(1rem, 5vw, 6rem);
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--bg) 90%, transparent), color-mix(in srgb, var(--bg) 54%, transparent)),
+    var(--hero-overlay),
     var(--hero-image) center / cover;
 }
 
@@ -264,6 +265,70 @@ img {
   line-height: 1.6;
 }
 
+.design-path {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1.25rem, 4vw, 4rem);
+  padding: clamp(2.5rem, 6vw, 6rem) clamp(1rem, 5vw, 6rem);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line-local);
+}
+
+.design-path span:first-child {
+  color: var(--accent-local);
+  font-size: 0.82rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.design-path h2 {
+  max-width: 34rem;
+  margin: 0.7rem 0 0;
+  font-size: clamp(1.7rem, 4vw, 3rem);
+  line-height: 1.05;
+}
+
+.design-path ol {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-path li {
+  border-top: 1px solid var(--line-local);
+  padding-top: 1rem;
+}
+
+.design-path strong,
+.design-path li span {
+  display: block;
+}
+
+.design-path li span {
+  margin-top: 0.35rem;
+  color: var(--muted-local);
+}
+
+.image-strip {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 0.9fr;
+  gap: 1px;
+  background: var(--line-local);
+}
+
+.image-strip img {
+  width: 100%;
+  height: clamp(14rem, 34vw, 30rem);
+  object-fit: cover;
+}
+
+/* 1. Research Atelier: calm split hero with structured research cards. */
+.design-stage[data-design="atelier"] .design-path {
+  background: color-mix(in srgb, var(--bg) 92%, #ffffff);
+}
+
 .design-stage[data-design="matrix"] {
   --bg: #101417;
   --surface: #171d21;
@@ -272,6 +337,53 @@ img {
   --line-local: rgba(237, 247, 244, 0.18);
   --accent-local: #62d6a3;
   --hero-image: url("../images/Gallery-8.jpg");
+  --hero-overlay:
+    linear-gradient(90deg, rgba(16, 20, 23, 0.96), rgba(16, 20, 23, 0.55)),
+    repeating-linear-gradient(0deg, transparent 0 28px, rgba(98, 214, 163, 0.1) 29px 30px);
+}
+
+/* 2. Optimization Console: dense dark dashboard. */
+.design-stage[data-design="matrix"] .design-hero {
+  grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 0.75fr);
+  align-items: end;
+}
+
+.design-stage[data-design="matrix"] .hero-copy {
+  border: 1px solid var(--line-local);
+  background: rgba(23, 29, 33, 0.82);
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.design-stage[data-design="matrix"] .hero-copy h1 {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+}
+
+.design-stage[data-design="matrix"] .design-hero figure {
+  align-self: stretch;
+  display: grid;
+  align-content: end;
+}
+
+.design-stage[data-design="matrix"] .design-hero img {
+  aspect-ratio: 1 / 1;
+  border-radius: 0;
+  box-shadow: none;
+  filter: grayscale(0.25) contrast(1.1);
+}
+
+.design-stage[data-design="matrix"] .highlight-grid {
+  grid-template-columns: 0.9fr 1.15fr 0.95fr;
+  padding: 1px;
+}
+
+.design-stage[data-design="matrix"] .highlight-grid article,
+.design-stage[data-design="matrix"] .hero-actions a {
+  border-radius: 0;
+}
+
+.design-stage[data-design="matrix"] .design-path {
+  grid-template-columns: 1fr;
 }
 
 .design-stage[data-design="gallery"] {
@@ -282,6 +394,43 @@ img {
   --line-local: rgba(36, 32, 29, 0.14);
   --accent-local: #c54f2f;
   --hero-image: url("../images/Gallery-18.jpg");
+  --hero-overlay: linear-gradient(0deg, rgba(251, 250, 247, 0.94), rgba(251, 250, 247, 0.3));
+}
+
+/* 3. Photo Journal: image-led cover and gallery-like cards. */
+.design-stage[data-design="gallery"] .design-hero {
+  grid-template-columns: minmax(19rem, 0.55fr) minmax(0, 0.85fr);
+  min-height: calc(100vh - 8rem);
+}
+
+.design-stage[data-design="gallery"] .hero-copy {
+  order: 2;
+  align-self: end;
+}
+
+.design-stage[data-design="gallery"] .design-hero figure {
+  order: 1;
+}
+
+.design-stage[data-design="gallery"] .design-hero img {
+  aspect-ratio: 3 / 4;
+  border-radius: 0;
+  box-shadow: 0 2rem 5rem rgba(36, 32, 29, 0.22);
+}
+
+.design-stage[data-design="gallery"] .highlight-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.design-stage[data-design="gallery"] .highlight-grid article:first-child {
+  grid-row: span 2;
+}
+
+.design-stage[data-design="gallery"] .image-strip {
+  grid-template-columns: repeat(3, 1fr);
+  padding: clamp(1rem, 3vw, 2rem);
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  background: var(--bg);
 }
 
 .design-stage[data-design="notebook"] {
@@ -292,6 +441,49 @@ img {
   --line-local: rgba(35, 49, 63, 0.18);
   --accent-local: #235c90;
   --hero-image: url("../images/Gallery-14.jpg");
+  --hero-overlay:
+    linear-gradient(90deg, rgba(245, 241, 232, 0.96), rgba(245, 241, 232, 0.72)),
+    linear-gradient(var(--line-local) 1px, transparent 1px) 0 0 / 100% 2rem;
+}
+
+/* 4. Academic Notebook: paper margin, notes, and linear path. */
+.design-stage[data-design="notebook"] {
+  background:
+    linear-gradient(90deg, transparent 0 5.5rem, rgba(35, 92, 144, 0.16) 5.5rem 5.6rem, transparent 5.6rem),
+    var(--bg);
+}
+
+.design-stage[data-design="notebook"] .design-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.35fr);
+  padding-left: clamp(2rem, 10vw, 9rem);
+}
+
+.design-stage[data-design="notebook"] .hero-copy h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+}
+
+.design-stage[data-design="notebook"] .design-hero img {
+  border: 8px solid #fffdf7;
+  box-shadow: 0 0.75rem 2rem rgba(35, 49, 63, 0.18);
+  transform: rotate(1.2deg);
+}
+
+.design-stage[data-design="notebook"] .highlight-grid,
+.design-stage[data-design="notebook"] .design-path {
+  margin-left: clamp(0rem, 7vw, 6rem);
+}
+
+.design-stage[data-design="notebook"] .highlight-grid {
+  display: block;
+  background: transparent;
+  border: 0;
+}
+
+.design-stage[data-design="notebook"] .highlight-grid article {
+  min-height: auto;
+  border-top: 1px solid var(--line-local);
+  background: transparent;
 }
 
 .design-stage[data-design="studio"] {
@@ -302,6 +494,43 @@ img {
   --line-local: rgba(23, 45, 43, 0.16);
   --accent-local: #007a67;
   --hero-image: url("../images/Gallery-12.jpg");
+  --hero-overlay: linear-gradient(135deg, rgba(238, 244, 240, 0.97), rgba(238, 244, 240, 0.65));
+}
+
+/* 5. Applied Math Studio: modular studio panels. */
+.design-stage[data-design="studio"] .design-hero {
+  grid-template-columns: minmax(0, 0.72fr) minmax(18rem, 0.52fr);
+  min-height: auto;
+  padding-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+.design-stage[data-design="studio"] .hero-copy {
+  border-left: 0.55rem solid var(--accent-local);
+  background: var(--surface);
+  padding: clamp(1.3rem, 3vw, 2.4rem);
+}
+
+.design-stage[data-design="studio"] .design-hero img {
+  aspect-ratio: 16 / 10;
+}
+
+.design-stage[data-design="studio"] .highlight-grid {
+  width: min(82rem, calc(100% - 2rem));
+  margin: 0 auto clamp(2rem, 5vw, 4rem);
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  background: transparent;
+  border: 0;
+}
+
+.design-stage[data-design="studio"] .highlight-grid article {
+  min-height: auto;
+  border: 1px solid var(--line-local);
+  border-radius: 8px;
+}
+
+.design-stage[data-design="studio"] .design-path {
+  border-top: 1px solid var(--line-local);
 }
 
 .design-stage[data-design="folio"] {
@@ -312,6 +541,55 @@ img {
   --line-local: rgba(23, 23, 23, 0.13);
   --accent-local: #111111;
   --hero-image: url("../images/Gallery-4.jpg");
+  --hero-overlay: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.86));
+}
+
+/* 6. Minimal Folio: sparse, type-led, less framing. */
+.design-stage[data-design="folio"] .design-toolbar {
+  justify-content: flex-start;
+  width: min(70rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding-inline: 0;
+}
+
+.design-stage[data-design="folio"] .design-hero {
+  grid-template-columns: 1fr;
+  min-height: auto;
+  width: min(70rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(4rem, 10vw, 8rem) 0 clamp(2rem, 5vw, 4rem);
+  background: var(--bg);
+}
+
+.design-stage[data-design="folio"] .hero-copy h1 {
+  max-width: 9ch;
+  font-size: clamp(4rem, 14vw, 10rem);
+}
+
+.design-stage[data-design="folio"] .design-hero figure {
+  width: min(18rem, 60vw);
+}
+
+.design-stage[data-design="folio"] .design-hero img {
+  aspect-ratio: 1 / 1;
+  box-shadow: none;
+}
+
+.design-stage[data-design="folio"] .highlight-grid,
+.design-stage[data-design="folio"] .design-path {
+  width: min(70rem, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.design-stage[data-design="folio"] .highlight-grid {
+  background: transparent;
+  border: 0;
+}
+
+.design-stage[data-design="folio"] .highlight-grid article {
+  background: transparent;
+  border-top: 1px solid var(--line-local);
+  min-height: auto;
 }
 
 .design-stage[data-design="lecture"] {
@@ -322,6 +600,41 @@ img {
   --line-local: rgba(244, 241, 223, 0.17);
   --accent-local: #f0d36b;
   --hero-image: url("../images/Gallery-7.jpg");
+  --hero-overlay:
+    linear-gradient(90deg, rgba(37, 52, 47, 0.96), rgba(37, 52, 47, 0.58)),
+    linear-gradient(var(--line-local) 1px, transparent 1px) 0 0 / 100% 2.25rem;
+}
+
+/* 7. Chalkboard Lecture: presentation board feel. */
+.design-stage[data-design="lecture"] .design-hero {
+  grid-template-columns: minmax(0, 0.8fr) minmax(16rem, 0.45fr);
+}
+
+.design-stage[data-design="lecture"] .hero-copy h1,
+.design-stage[data-design="lecture"] .highlight-grid h2,
+.design-stage[data-design="lecture"] .design-path h2 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.design-stage[data-design="lecture"] .design-hero img {
+  border: 1px solid var(--line-local);
+  border-radius: 0;
+  filter: saturate(0.7);
+}
+
+.design-stage[data-design="lecture"] .highlight-grid {
+  padding: clamp(1rem, 3vw, 2rem);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  background: var(--bg);
+}
+
+.design-stage[data-design="lecture"] .highlight-grid article {
+  border: 1px solid var(--line-local);
+  background: rgba(49, 68, 62, 0.74);
+}
+
+.design-stage[data-design="lecture"] .hero-actions a:first-child {
+  color: #25342f;
 }
 
 .design-stage[data-design="lab"] {
@@ -332,6 +645,43 @@ img {
   --line-local: rgba(23, 33, 43, 0.14);
   --accent-local: #d0443e;
   --hero-image: url("../images/Gallery-6.jpg");
+  --hero-overlay: linear-gradient(90deg, rgba(238, 242, 244, 0.98), rgba(238, 242, 244, 0.7));
+}
+
+/* 8. Systems Lab: utilitarian dashboard/report. */
+.design-stage[data-design="lab"] .design-toolbar,
+.design-stage[data-design="lab"] .hero-actions a,
+.design-stage[data-design="lab"] .design-hero img,
+.design-stage[data-design="lab"] .highlight-grid article {
+  border-radius: 0;
+}
+
+.design-stage[data-design="lab"] .design-hero {
+  grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 0.5fr);
+  align-items: stretch;
+  min-height: auto;
+}
+
+.design-stage[data-design="lab"] .hero-copy {
+  align-self: stretch;
+  display: grid;
+  align-content: center;
+  border: 1px solid var(--line-local);
+  background: var(--surface);
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.design-stage[data-design="lab"] .design-hero img {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.design-stage[data-design="lab"] .highlight-grid {
+  grid-template-columns: 1.35fr 0.85fr 0.85fr;
+}
+
+.design-stage[data-design="lab"] .design-path ol {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .design-stage[data-design="editorial"] {
@@ -342,11 +692,36 @@ img {
   --line-local: rgba(32, 28, 24, 0.15);
   --accent-local: #8f3f31;
   --hero-image: url("../images/Gallery-13.jpg");
+  --hero-overlay: linear-gradient(90deg, rgba(248, 245, 240, 0.88), rgba(248, 245, 240, 0.4));
 }
 
-.design-stage[data-design="editorial"] h1 {
+/* 9. Editorial Profile: magazine-cover composition. */
+.design-stage[data-design="editorial"] .design-hero {
+  grid-template-columns: minmax(0, 0.7fr) minmax(18rem, 0.62fr);
+  align-items: end;
+}
+
+.design-stage[data-design="editorial"] h1,
+.design-stage[data-design="editorial"] .design-path h2 {
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 500;
+}
+
+.design-stage[data-design="editorial"] .hero-copy h1 {
+  font-size: clamp(4rem, 12vw, 10rem);
+}
+
+.design-stage[data-design="editorial"] .design-hero img {
+  aspect-ratio: 4 / 5.5;
+  border-radius: 0;
+}
+
+.design-stage[data-design="editorial"] .highlight-grid {
+  grid-template-columns: 0.75fr 1.5fr 0.75fr;
+}
+
+.design-stage[data-design="editorial"] .highlight-grid article {
+  background: transparent;
 }
 
 .design-stage[data-design="signal"] {
@@ -357,6 +732,52 @@ img {
   --line-local: rgba(248, 250, 252, 0.16);
   --accent-local: #7dd3fc;
   --hero-image: url("../images/Gallery-1.jpg");
+  --hero-overlay:
+    radial-gradient(circle at 18% 20%, rgba(125, 211, 252, 0.24), transparent 28rem),
+    linear-gradient(90deg, rgba(17, 24, 39, 0.96), rgba(17, 24, 39, 0.5));
+}
+
+/* 10. Signal Map: network-like asymmetric surface. */
+.design-stage[data-design="signal"] .design-hero {
+  grid-template-columns: minmax(0, 0.85fr) minmax(18rem, 0.55fr);
+  position: relative;
+  overflow: hidden;
+}
+
+.design-stage[data-design="signal"] .design-hero::after {
+  content: "";
+  position: absolute;
+  inset: 12% 7% auto auto;
+  width: min(34rem, 52vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  background:
+    linear-gradient(90deg, transparent 49%, rgba(125, 211, 252, 0.18) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(125, 211, 252, 0.18) 50%, transparent 51%);
+  pointer-events: none;
+}
+
+.design-stage[data-design="signal"] .hero-copy,
+.design-stage[data-design="signal"] .design-hero figure {
+  position: relative;
+  z-index: 1;
+}
+
+.design-stage[data-design="signal"] .design-hero img {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+.design-stage[data-design="signal"] .highlight-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: clamp(1rem, 3vw, 2rem);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  background: var(--bg);
+}
+
+.design-stage[data-design="signal"] .highlight-grid article {
+  border: 1px solid var(--line-local);
+  background: rgba(25, 34, 50, 0.82);
 }
 
 .photo-grid {
@@ -409,13 +830,28 @@ img {
   }
 
   .design-hero,
-  .highlight-grid {
+  .highlight-grid,
+  .design-path,
+  .image-strip,
+  .design-stage[data-design="matrix"] .design-hero,
+  .design-stage[data-design="gallery"] .design-hero,
+  .design-stage[data-design="studio"] .design-hero,
+  .design-stage[data-design="lab"] .design-hero,
+  .design-stage[data-design="editorial"] .design-hero,
+  .design-stage[data-design="lab"] .design-path ol {
     grid-template-columns: 1fr;
   }
 
   .design-hero {
     min-height: auto;
     padding-inline: 1rem;
+  }
+
+  .design-stage[data-design="notebook"] .design-hero,
+  .design-stage[data-design="notebook"] .highlight-grid,
+  .design-stage[data-design="notebook"] .design-path {
+    margin-left: 0;
+    padding-left: 1rem;
   }
 }
 
