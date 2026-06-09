@@ -25,7 +25,9 @@ jobs:
 
       - name: Clone BetaBridge
         run: |
-          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/shengchao-lin/BetaBridge.git BetaBridge
+          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/shengchao-lin/BetaBridge.git _betabridge_tmp
+          cp -r _betabridge_tmp/app/static BetaBridge
+          rm -rf _betabridge_tmp
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
