@@ -23,6 +23,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Clone BetaBridge
+        run: |
+          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/shengchao-lin/BetaBridge.git BetaBridge
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
