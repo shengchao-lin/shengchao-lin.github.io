@@ -38,7 +38,7 @@ Layout uses CSS Grid throughout. Responsive breakpoints are at `820px` and `560p
 
 ## BetaBridge showcase (`betabridge.html`)
 
-Apple-style scroll showcase for the BetaBridge project. It is the one page with JavaScript (`assets/js/betabridge.js`): scroll reveals, stat counters, in-view video autoplay, and a fetch of `BetaBridge/data/evolution_latest.json` to refresh the baked champion stats. All motion is progressive enhancement — the page is fully readable with JS disabled and respects `prefers-reduced-motion`. Its styles live in the marked "BetaBridge showcase" section at the end of `style.css`.
+Scroll showcase for the BetaBridge project in a clean, premium product-design style: soft neutral dotted stage, floating window cards bleeding off pastel panels, pastel tag chips, a micro-label stat cluster, and a segmented capacity meter (generic modern-product cues only — no Apple trade dress). The matching project cards on `projects.html` reuse the chip styles. It is the one page with JavaScript (`assets/js/betabridge.js`): scroll reveals, stat counters, in-view video autoplay, and a fetch of `BetaBridge/data/evolution_latest.json` to refresh the baked champion stats. All motion is progressive enhancement — the page is fully readable with JS disabled and respects `prefers-reduced-motion`. Its styles live in the marked "BetaBridge showcase" section at the end of `style.css`.
 
 The screenshots and demo video in `assets/images/betabridge/` are committed fallbacks; the deploy workflow re-captures them from the current BetaBridge UI on every deploy:
 
