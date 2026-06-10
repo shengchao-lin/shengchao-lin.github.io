@@ -2,3 +2,6 @@
 .idea
 node_modules/
 .DS_Store
+
+# Generated at deploy time by .github/workflows/pages.yml
+/BetaBridge/

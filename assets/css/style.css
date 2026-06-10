@@ -349,3 +349,375 @@ img {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   BetaBridge showcase (betabridge.html)
+   Apple-style scroll showcase in the site's warm paper palette, borrowing
+   BetaBridge's emerald + serif "warm editorial club" brand.
+   ========================================================================== */
+
+.bb-stage {
+  --bb-green: #14735a;
+  --bb-green-dark: #0b5443;
+  --bb-gold: #a07a22;
+  --bb-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  overflow-x: clip;
+  background:
+    radial-gradient(50rem 30rem at 85% -5%, rgba(20, 115, 90, 0.09), transparent 70%),
+    radial-gradient(40rem 26rem at -10% 30%, rgba(160, 122, 34, 0.07), transparent 70%),
+    var(--paper);
+}
+
+.bb-eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--bb-green);
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.bb-hero {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: clamp(4rem, 12vh, 9rem) 1.25rem clamp(2.5rem, 6vh, 4rem);
+  text-align: center;
+}
+
+.bb-title {
+  margin: 0;
+  font-family: var(--bb-serif);
+  font-size: clamp(3.6rem, 11vw, 8.5rem);
+  font-weight: 650;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.bb-tagline {
+  margin: 1.1rem 0 0;
+  font-family: var(--bb-serif);
+  font-size: clamp(1.35rem, 3.4vw, 2.2rem);
+  line-height: 1.25;
+  color: var(--bb-green-dark);
+}
+
+.bb-lede {
+  max-width: 42rem;
+  margin: 1.4rem auto 0;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.bb-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 2.2rem;
+}
+
+.bb-cta a {
+  min-height: 2.9rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.65rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.bb-cta a:first-child {
+  background: var(--bb-green);
+  border-color: var(--bb-green);
+  color: #ffffff;
+}
+
+.bb-cta a:hover {
+  border-color: var(--bb-green);
+}
+
+/* Browser-style frame around every screenshot / video */
+.bb-frame {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 2.5rem 5rem -2rem rgba(28, 38, 34, 0.35), 0 0.5rem 1.2rem rgba(28, 38, 34, 0.08);
+}
+
+.bb-frame-bar {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 70%, #ffffff);
+}
+
+.bb-frame-bar span {
+  width: 0.68rem;
+  height: 0.68rem;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.bb-frame img,
+.bb-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.bb-frame figcaption {
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.bb-demo {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vh, 3rem) 1.25rem;
+}
+
+.bb-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2.5rem);
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vh, 5rem) 1.25rem;
+}
+
+.bb-stat strong {
+  display: block;
+  font-family: var(--bb-serif);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 650;
+  line-height: 1;
+  color: var(--bb-green-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.bb-stat span {
+  display: block;
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.bb-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(1.75rem, 5vw, 4.5rem);
+  align-items: center;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 9vh, 6.5rem) 1.25rem;
+}
+
+.bb-feature-flip .bb-feature-copy {
+  order: 2;
+}
+
+.bb-feature h2,
+.bb-under h2,
+.bb-try h2 {
+  margin: 0 0 1rem;
+  font-family: var(--bb-serif);
+  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.bb-feature-copy p {
+  margin: 0.9rem 0 0;
+  font-size: 1.04rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.bb-feature-copy em {
+  font-style: normal;
+  font-weight: 750;
+  color: var(--ink);
+}
+
+/* Full-bleed dark interlude */
+.bb-dark {
+  padding: clamp(3.5rem, 10vh, 7rem) 1.25rem;
+  background:
+    radial-gradient(46rem 30rem at 110% 0%, rgba(160, 122, 34, 0.22), transparent 65%),
+    linear-gradient(170deg, var(--bb-green-dark), #07382d 70%);
+  color: #f1efe6;
+}
+
+.bb-dark-inner {
+  max-width: 70rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bb-dark .bb-eyebrow {
+  color: #d9b86a;
+}
+
+.bb-dark h2 {
+  margin: 0;
+  font-family: var(--bb-serif);
+  font-size: clamp(2.1rem, 5.5vw, 4rem);
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.bb-dark-lede {
+  max-width: 46rem;
+  margin: 1.4rem auto 2.6rem;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(241, 239, 230, 0.82);
+}
+
+.bb-frame-dark {
+  border-color: rgba(241, 239, 230, 0.18);
+  box-shadow: 0 3rem 6rem -2rem rgba(0, 0, 0, 0.6);
+}
+
+.bb-frame-dark .bb-frame-bar {
+  background: rgba(241, 239, 230, 0.08);
+  border-bottom-color: rgba(241, 239, 230, 0.14);
+}
+
+.bb-frame-dark .bb-frame-bar span {
+  background: rgba(241, 239, 230, 0.25);
+}
+
+.bb-under {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 9vh, 6rem) 1.25rem;
+  text-align: center;
+}
+
+.bb-under-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.bb-card {
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.bb-card strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-weight: 850;
+}
+
+.bb-card span {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.bb-card code {
+  font-size: 0.88em;
+  background: color-mix(in srgb, var(--paper) 60%, #ffffff);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0.05rem 0.3rem;
+}
+
+.bb-try {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 5vw, 4rem);
+  align-items: center;
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 9vh, 6rem) 1.25rem clamp(4rem, 10vh, 7rem);
+}
+
+.bb-try-copy p {
+  margin: 0.9rem 0 0;
+  font-size: 1.04rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.bb-try-copy a {
+  color: var(--bb-green);
+  font-weight: 750;
+}
+
+.bb-terminal {
+  margin: 0;
+  padding: 1.5rem 1.6rem;
+  border-radius: 14px;
+  background: #10231d;
+  color: #d7e8e0;
+  font-size: 0.98rem;
+  line-height: 1.9;
+  overflow-x: auto;
+  box-shadow: 0 1.8rem 3.5rem -1.5rem rgba(16, 35, 29, 0.7);
+}
+
+.bb-prompt {
+  color: #6fbfa6;
+  user-select: none;
+}
+
+/* Scroll reveals — armed only when JS adds .bb-js, skipped for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html.bb-js .bb-reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html.bb-js .bb-reveal.bb-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .bb-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bb-under-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .bb-feature,
+  .bb-try {
+    grid-template-columns: 1fr;
+  }
+
+  .bb-feature-flip .bb-feature-copy {
+    order: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .bb-stats,
+  .bb-under-grid {
+    grid-template-columns: 1fr;
+  }
+}
