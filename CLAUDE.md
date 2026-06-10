@@ -54,8 +54,10 @@ python3 scripts/compress_betabridge_screenshots.py
 The workflow at `.github/workflows/pages.yml` runs on push to main/master, on a weekly cron (so the showcase tracks BetaBridge), and on manual dispatch:
 1. Clones the separate BetaBridge repository (requires `GH_PAT` secret)
 2. Runs BetaBridge's `scripts/build_site.py` to build the read-only static subsite (with `data/` JSON artifacts) into `/BetaBridge/`
-3. Best-effort: serves the cloned engine locally, re-captures the showcase screenshots/demo video from the live UI, and compresses them (falls back to the committed assets on failure)
-4. Deploys the combined result to GitHub Pages
+3. Bakes live champion stats into `betabridge.html` from the freshly built `BetaBridge/data/evolution_latest.json` (`scripts/bake_betabridge_stats.py`) — the committed numbers are placeholders, never hand-maintained facts
+4. Best-effort: serves the cloned engine locally, re-captures the showcase screenshots/demo video from the live UI, and compresses them (falls back to the committed assets on failure)
+5. Fatal gate: `scripts/check_internal_links.py` verifies every internal href/src across the built site (subsite included) resolves, so internal 404s can never deploy
+6. Deploys the combined result to GitHub Pages
 
 The `/BetaBridge/` directory is gitignored — it exists only inside the deploy artifact. Note: `play.html` in the subsite needs the Python backend and stays non-interactive when hosted statically; the showcase page is the public face of the project, and the subsite's dashboard/agreements pages work read-only from the data snapshots.
 

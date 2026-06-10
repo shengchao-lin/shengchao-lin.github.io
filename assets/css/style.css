@@ -729,13 +729,14 @@ img {
 }
 
 .bb-meter-bar {
+  --bb-seg: 40; /* segment count = rule capacity, baked/refreshed from evolution data */
   position: relative;
   height: 2.1rem;
   border-radius: 10px;
   background: rgba(241, 239, 230, 0.16);
   overflow: hidden;
-  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 calc(2.5% - 3px), transparent calc(2.5% - 3px) 2.5%);
-  mask-image: repeating-linear-gradient(90deg, #000 0 calc(2.5% - 3px), transparent calc(2.5% - 3px) 2.5%);
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 calc(100% / var(--bb-seg) - 3px), transparent calc(100% / var(--bb-seg) - 3px) calc(100% / var(--bb-seg)));
+  mask-image: repeating-linear-gradient(90deg, #000 0 calc(100% / var(--bb-seg) - 3px), transparent calc(100% / var(--bb-seg) - 3px) calc(100% / var(--bb-seg)));
 }
 
 .bb-meter-bar i {
