@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BetaBridge | Shengchao Lin</title>
+    <meta name="description" content="BetaBridge — a bridge AI lab that evolves its own tournament-legal bidding system from noise, built on the pure Python standard library.">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <header class="site-header"><a class="site-name" href="index.html">Shengchao Lin</a><nav class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="research.html">Research</a><a href="projects.html">Projects</a><a href="gallery.html">Gallery</a></nav></header>
+
+    <main class="bb-stage">
+      <!-- Hero -->
+      <section class="bb-hero">
+        <p class="bb-eyebrow bb-reveal">Personal project</p>
+        <h1 class="bb-title bb-reveal">BetaBridge</h1>
+        <p class="bb-tagline bb-reveal">A bridge AI that taught itself to bid.</p>
+        <p class="bb-lede bb-reveal">No neural net priors, no human conventions baked in &mdash; a genetic evolution loop discovers a tournament-legal bidding system from pure noise, then explains every call it makes.</p>
+        <div class="bb-chips bb-reveal" aria-label="Project tags">
+          <span class="bb-chip bb-chip-green">Python stdlib only</span>
+          <span class="bb-chip bb-chip-gold">Genetic evolution</span>
+          <span class="bb-chip bb-chip-blue">Duplicate bridge</span>
+          <span class="bb-chip bb-chip-purple">Self-explaining</span>
+          <span class="bb-chip bb-chip-red">ACBL-legal</span>
+        </div>
+        <div class="bb-cta bb-reveal">
+          <a href="#bb-demo">Watch it play</a>
+          <a href="BetaBridge/agreements.html">Browse its bidding system</a>
+          <a href="https://github.com/shengchao-lin/BetaBridge">GitHub</a>
+        </div>
+      </section>
+
+      <!-- Live demo video -->
+      <section class="bb-demo" id="bb-demo">
+        <figure class="bb-frame bb-reveal">
+          <div class="bb-frame-bar"><span></span><span></span><span></span></div>
+          <video muted loop playsinline controls preload="metadata" poster="assets/images/betabridge/play-table.png" data-bb-autoplay>
+            <source src="assets/images/betabridge/watch-demo.webm" type="video/webm">
+          </video>
+          <figcaption>AlphaBridge playing all four seats &mdash; recorded from the real UI, auction through card play.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Champion stats (refreshed from the live evolution artifacts when available) -->
+      <section class="bb-stats-wrap" aria-label="Current champion statistics">
+        <div class="bb-stats bb-reveal">
+          <div class="bb-stat">
+            <span class="bb-stat-label">Champion matchpoint %</span>
+            <strong data-stat="fitness" data-count-to="62.8" data-decimals="1">62.8</strong>
+            <em>vs. 2/1, Precision &amp; GIB anchors</em>
+          </div>
+          <div class="bb-stat">
+            <span class="bb-stat-label">Genome size</span>
+            <strong data-stat="genome" data-count-to="760">760</strong>
+            <em>integers encode the whole policy</em>
+          </div>
+          <div class="bb-stat">
+            <span class="bb-stat-label">Evolved rules</span>
+            <strong data-stat="rules" data-count-to="24">24</strong>
+            <em>of 40 slots, every one disclosed</em>
+          </div>
+          <div class="bb-stat">
+            <span class="bb-stat-label">Dependencies</span>
+            <strong data-count-to="0">0</strong>
+            <em>pure Python standard library</em>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feature: the table -->
+      <section class="bb-feature">
+        <div class="bb-feature-copy bb-reveal">
+          <div class="bb-chips"><span class="bb-chip bb-chip-green">Engine</span><span class="bb-chip bb-chip-blue">Hidden info</span><span class="bb-chip bb-chip-gold">Watch mode</span></div>
+          <h2>A real bridge table, honest by construction.</h2>
+          <p>A full duplicate bridge engine runs in the browser: dealing, auction legality, trick resolution, duplicate and cross-IMP scoring. Hidden information is enforced at the architecture level &mdash; each seat sees only what the laws of bridge allow, and the dummy stays face-down until the opening lead.</p>
+          <p>Flip on <em>bot thoughts</em> and the AI narrates each decision as it makes it; <em>Watch AI&nbsp;vs&nbsp;AI</em> lets a whole board play itself.</p>
+        </div>
+        <div class="bb-shot bb-shot-mint bb-reveal">
+          <div class="bb-shot-window">
+            <div class="bb-frame-bar"><span></span><span></span><span></span></div>
+            <img src="assets/images/betabridge/play-table.png" alt="The BetaBridge play table mid-deal: a green card table with a live trick, seat panels, bot commentary, and an auction history" loading="lazy" width="3200" height="2000">
+          </div>
+        </div>
+      </section>
+
+      <!-- Band: the discovered system -->
+      <section class="bb-band-wrap">
+        <div class="bb-band bb-reveal">
+          <p class="bb-eyebrow">The discovery</p>
+          <h2>It invented its own bidding system.</h2>
+          <p class="bb-band-lede">Evolution starts from random noise. Generation after generation, candidate genomes play duplicate-field tournaments against 2/1, Precision, and GIB-style anchors &mdash; human systems are opponents, never teachers. What survives is a bidding language no person designed, exported with full ACBL disclosure metadata: every call announced, every alert marked.</p>
+          <div class="bb-meter bb-reveal" role="img" aria-label="24 of 40 rule slots in use">
+            <div class="bb-meter-bar"><i style="--fill:60%"></i></div>
+            <span><b data-bb-meter>24</b> of 40 rule slots in use by the current champion</span>
+          </div>
+          <figure class="bb-frame bb-reveal">
+            <div class="bb-frame-bar"><span></span><span></span><span></span></div>
+            <img src="assets/images/betabridge/agreements.png" alt="The agreement browser showing AlphaBridge Native, the self-discovered system, with ACBL metadata and decoded bidding rules" loading="lazy" width="3200" height="2000">
+          </figure>
+        </div>
+      </section>
+
+      <!-- Feature: disclosure -->
+      <section class="bb-feature bb-feature-flip">
+        <div class="bb-feature-copy bb-reveal">
+          <div class="bb-chips"><span class="bb-chip bb-chip-purple">Disclosure</span><span class="bb-chip bb-chip-red">Call meanings</span><span class="bb-chip bb-chip-blue">Assistant</span></div>
+          <h2>Every call explains itself.</h2>
+          <p>A feature that can&rsquo;t be explained to the player isn&rsquo;t done. Tap any call to read its decoded meaning; seat panels show exactly what each player is allowed to know; the real-hand assistant recommends a call for your own 13 cards and tells you why.</p>
+          <p>The agreement browser is the single source of truth for what every strategy bids &mdash; the evolved AI included.</p>
+        </div>
+        <div class="bb-shot bb-shot-blush bb-reveal">
+          <div class="bb-shot-window">
+            <div class="bb-frame-bar"><span></span><span></span><span></span></div>
+            <img src="assets/images/betabridge/play-auction.png" alt="A fresh board during the auction: seat knowledge panels, legal call buttons, and the bidding grid" loading="lazy" width="3200" height="2000">
+          </div>
+        </div>
+      </section>
+
+      <!-- Feature: the lab -->
+      <section class="bb-feature">
+        <div class="bb-feature-copy bb-reveal">
+          <div class="bb-chips"><span class="bb-chip bb-chip-gold">Deterministic</span><span class="bb-chip bb-chip-green">Benchmarked</span><span class="bb-chip bb-chip-blue">Local-first</span></div>
+          <h2>A lab, not a black box.</h2>
+          <p>Determinism is a first-class invariant: the same seed reproduces the same deal, auction, play, and evolution result, byte for byte. Training runs are budget-guarded, benchmarks gate every optimization, and the dashboard puts smoke runs, engine throughput, and evolution leaderboards one click away.</p>
+          <p>Everything runs locally on a laptop &mdash; no services, no GPUs, no installs.</p>
+        </div>
+        <div class="bb-shot bb-shot-sky bb-reveal">
+          <div class="bb-shot-window">
+            <div class="bb-frame-bar"><span></span><span></span><span></span></div>
+            <img src="assets/images/betabridge/dashboard.png" alt="The BetaBridge main menu and dashboard hub" loading="lazy" width="3200" height="2000">
+          </div>
+        </div>
+      </section>
+
+      <!-- Under the hood -->
+      <section class="bb-under">
+        <h2 class="bb-reveal">Under the hood</h2>
+        <div class="bb-under-grid">
+          <div class="bb-card bb-reveal"><strong>Pure standard library</strong><span>Engine, GA, web server, and UI with zero dependencies &mdash; <code>http.server</code> is the whole backend.</span></div>
+          <div class="bb-card bb-reveal"><strong>Deterministic by seed</strong><span>Same seed &rarr; same deal, auction, play, and leaderboard. Every speedup must keep results byte-identical.</span></div>
+          <div class="bb-card bb-reveal"><strong>Genetic evolution</strong><span>Elitism, crossover, per-gene mutation, and random immigrants over a duplicate-field tournament fitness.</span></div>
+          <div class="bb-card bb-reveal"><strong>Information-state boundaries</strong><span>Strategies receive only a seat&rsquo;s legal view; the engine, not the bot, enforces legality.</span></div>
+          <div class="bb-card bb-reveal"><strong>Tournament-legal</strong><span>Evolved agreements carry ACBL Open Chart compliance: alerts, pre-alerts, and written-defense metadata.</span></div>
+          <div class="bb-card bb-reveal"><strong>Benchmark-gated speed</strong><span>Throughput bounds training scale, so hot paths are profiled and regressions are visible immediately.</span></div>
+        </div>
+      </section>
+
+      <!-- Try it -->
+      <section class="bb-try">
+        <div class="bb-try-copy bb-reveal">
+          <h2>Try it yourself.</h2>
+          <p>The read-only lab is hosted right here &mdash; browse the <a href="BetaBridge/agreements.html">discovered bidding system</a> and the <a href="BetaBridge/">dashboard</a> rebuilt from the latest artifacts on every deploy.</p>
+          <p>Playing a board needs the local engine. One clone, no installs:</p>
+        </div>
+        <pre class="bb-terminal bb-reveal"><code><span class="bb-prompt">$</span> git clone https://github.com/shengchao-lin/BetaBridge.git
+<span class="bb-prompt">$</span> cd BetaBridge
+<span class="bb-prompt">$</span> python3 main.py play-ui</code></pre>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>Shengchao Lin</span><a href="https://github.com/shengchao-lin">GitHub</a><a href="https://www.linkedin.com/in/shengchao-lin/">LinkedIn</a><a href="files/Shengchao_Lin_CV.pdf">CV</a></footer>
+    <script src="assets/js/betabridge.js" defer></script>
+  </body>
+</html>

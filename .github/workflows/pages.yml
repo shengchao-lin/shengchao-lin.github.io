@@ -6,6 +6,10 @@ on:
       - main
       - master
   workflow_dispatch:
+  schedule:
+    # Weekly refresh so the BetaBridge showcase tracks the latest UI and
+    # evolution artifacts even without portfolio commits.
+    - cron: "0 6 * * 1"
 
 permissions:
   contents: read
@@ -25,9 +29,44 @@ jobs:
 
       - name: Clone BetaBridge
         run: |
-          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/shengchao-lin/BetaBridge.git _betabridge_tmp
-          cp -r _betabridge_tmp/app/static BetaBridge
-          rm -rf _betabridge_tmp
+          git clone --depth 1 https://x-access-token:${{ secrets.GH_PAT }}@github.com/shengchao-lin/BetaBridge.git _betabridge_tmp
+
+      - name: Build BetaBridge read-only static site
+        # build_site.py snapshots the agreement/dashboard/evolution data into
+        # BetaBridge/data/, which both the read-only subsite and the showcase
+        # page's live stats consume.
+        run: |
+          cd _betabridge_tmp
+          python3 -B scripts/build_site.py "$GITHUB_WORKSPACE/BetaBridge"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Refresh BetaBridge showcase screenshots and demo video
+        # Best-effort: screenshots the *current* UI served by the freshly
+        # cloned engine. If anything fails, the screenshots committed to the
+        # repo are used instead, so a flaky browser never blocks a deploy.
+        continue-on-error: true
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+          python3 -m pip install --break-system-packages pillow || python3 -m pip install pillow
+          cd _betabridge_tmp
+          python3 main.py playground --no-browser --port 8765 &
+          SERVER_PID=$!
+          for i in $(seq 1 30); do
+            curl -sf -o /dev/null http://127.0.0.1:8765/play.html && break
+            sleep 1
+          done
+          cd "$GITHUB_WORKSPACE"
+          node scripts/capture-betabridge-screenshots.mjs
+          python3 scripts/compress_betabridge_screenshots.py
+          kill "$SERVER_PID"
+
+      - name: Prune working files from the artifact
+        run: rm -rf _betabridge_tmp node_modules package.json package-lock.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

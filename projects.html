@@ -5,11 +5,19 @@
     <header class="site-header"><a class="site-name" href="index.html">Shengchao Lin</a><nav class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="research.html">Research</a><a href="projects.html">Projects</a><a href="gallery.html">Gallery</a></nav></header>
     <main class="content-shell">
       <header class="page-intro"><h1>Projects</h1><p>Personal and side projects.</p></header>
-      <article class="prose">
-        <h2><a href="BetaBridge/">BetaBridge</a></h2>
-        <p>Enhance Bridge Bot with Reinforcement Learning. An exploration of applying RL techniques to the card game Bridge.</p>
-        <p><a href="BetaBridge/">View project</a> &middot; <a href="https://github.com/shengchao-lin/BetaBridge">GitHub</a></p>
-      </article>
+      <div class="project-grid">
+        <article class="project-card">
+          <a class="project-thumb" href="betabridge.html" aria-label="BetaBridge showcase">
+            <img src="assets/images/betabridge/play-table.png" alt="The BetaBridge play table mid-deal" loading="lazy" width="3200" height="2000">
+          </a>
+          <div class="project-body">
+            <h2><a href="betabridge.html">BetaBridge</a></h2>
+            <p>A bridge AI lab that evolves its own tournament-legal bidding system from noise via self-play, then explains every call it makes &mdash; built entirely on the Python standard library.</p>
+            <div class="bb-chips"><span class="bb-chip bb-chip-green">Python stdlib</span><span class="bb-chip bb-chip-gold">Genetic evolution</span><span class="bb-chip bb-chip-blue">Bridge</span></div>
+            <p class="project-links"><a href="betabridge.html">View showcase</a> &middot; <a href="https://github.com/shengchao-lin/BetaBridge">GitHub</a></p>
+          </div>
+        </article>
+      </div>
     </main>
     <footer class="site-footer"><span>Shengchao Lin</span><a href="https://github.com/shengchao-lin">GitHub</a><a href="https://www.linkedin.com/in/shengchao-lin/">LinkedIn</a><a href="files/Shengchao_Lin_CV.pdf">CV</a></footer>
   </body>
