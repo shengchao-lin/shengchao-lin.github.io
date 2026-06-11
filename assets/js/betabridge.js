@@ -60,8 +60,24 @@
       setStat("fitness", best.fitness, 1);
       setStat("genome", (best.genome || []).length, 0);
       setStat("rules", phenotype.rule_count_active, 0);
+      updateMeter(phenotype.rule_count_active, phenotype.rule_capacity);
     })
     .catch(function () { /* baked fallback values stay in place */ });
+
+  function updateMeter(active, capacity) {
+    if (typeof active !== "number" || typeof capacity !== "number" || capacity <= 0) return;
+    document.querySelectorAll("[data-stat-capacity]").forEach(function (el) {
+      el.textContent = String(capacity);
+    });
+    var label = document.querySelector("[data-bb-meter]");
+    if (label) label.textContent = String(active);
+    var bar = document.querySelector(".bb-meter-bar");
+    var fill = document.querySelector("[data-bb-meter-fill]");
+    var meter = document.querySelector(".bb-meter");
+    if (bar) bar.style.setProperty("--bb-seg", String(capacity));
+    if (fill) fill.style.setProperty("--fill", (active / capacity) * 100 + "%");
+    if (meter) meter.setAttribute("aria-label", active + " of " + capacity + " rule slots in use");
+  }
 
   function setStat(name, value, decimals) {
     if (typeof value !== "number" || !isFinite(value)) return;

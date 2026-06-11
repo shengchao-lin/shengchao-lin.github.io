@@ -39,6 +39,12 @@ jobs:
           cd _betabridge_tmp
           python3 -B scripts/build_site.py "$GITHUB_WORKSPACE/BetaBridge"
 
+      - name: Bake live champion stats into the showcase
+        # The committed betabridge.html holds placeholder numbers; replace
+        # them with values computed from the freshly built evolution artifact
+        # so every deploy ships current stats even for no-JS visitors.
+        run: python3 -B scripts/bake_betabridge_stats.py
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -67,6 +73,11 @@ jobs:
 
       - name: Prune working files from the artifact
         run: rm -rf _betabridge_tmp node_modules package.json package-lock.json
+
+      - name: Check internal links
+        # Fatal: never deploy a site with internal 404s (e.g. a subsite page
+        # that exists in the engine repo but was not shipped by build_site.py).
+        run: python3 -B scripts/check_internal_links.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
