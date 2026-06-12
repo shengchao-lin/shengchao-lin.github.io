@@ -51,7 +51,7 @@ python3 scripts/compress_betabridge_screenshots.py
 
 ## GitHub Actions / Deployment
 
-The workflow at `.github/workflows/pages.yml` runs on push to main/master, on a weekly cron (so the showcase tracks BetaBridge), and on manual dispatch:
+The workflow at `.github/workflows/pages.yml` runs on push to main/master, on a weekly cron (so the showcase tracks BetaBridge), on manual dispatch, and on a `repository_dispatch` event of type `betabridge-updated` (fired by BetaBridge's CI after every merge to its main branch, so the showcase refreshes immediately):
 1. Clones the separate BetaBridge repository (requires `GH_PAT` secret)
 2. Runs BetaBridge's `scripts/build_site.py` to build the read-only static subsite (with `data/` JSON artifacts) into `/BetaBridge/`
 3. Bakes live champion stats into `betabridge.html` from the freshly built `BetaBridge/data/evolution_latest.json` (`scripts/bake_betabridge_stats.py`) — the committed numbers are placeholders, never hand-maintained facts
