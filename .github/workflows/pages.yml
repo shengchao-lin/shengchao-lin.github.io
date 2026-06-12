@@ -6,6 +6,10 @@ on:
       - main
       - master
   workflow_dispatch:
+  repository_dispatch:
+    # Fired by BetaBridge's CI after a merge to its main branch, so the
+    # showcase and read-only subsite refresh as soon as the engine changes.
+    types: [betabridge-updated]
   schedule:
     # Weekly refresh so the BetaBridge showcase tracks the latest UI and
     # evolution artifacts even without portfolio commits.
