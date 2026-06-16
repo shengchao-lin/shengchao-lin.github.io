@@ -1,4 +1,4 @@
-// Progressive enhancement for the BetaBridge showcase (betabridge.html).
+// Progressive enhancement for the AlphaBridge showcase (alphabridge.html).
 // The page is fully readable without this file; everything here is motion
 // and live-data polish, gated behind prefers-reduced-motion.
 (function () {
@@ -7,22 +7,22 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // ---- Scroll reveals ------------------------------------------------------
-  // The `bb-js` class arms the CSS that hides .bb-reveal elements; without JS
+  // The `ab-js` class arms the CSS that hides .ab-reveal elements; without JS
   // (or with reduced motion) nothing is ever hidden.
   if (!reduceMotion && "IntersectionObserver" in window) {
-    document.documentElement.classList.add("bb-js");
+    document.documentElement.classList.add("ab-js");
     var revealed = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("bb-in");
+          entry.target.classList.add("ab-in");
           revealed.unobserve(entry.target);
           if (entry.target.querySelector("[data-count-to]")) startCounters(entry.target);
         });
       },
       { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
     );
-    document.querySelectorAll(".bb-reveal").forEach(function (el, i) {
+    document.querySelectorAll(".ab-reveal").forEach(function (el, i) {
       el.style.transitionDelay = (i % 4) * 70 + "ms";
       revealed.observe(el);
     });
@@ -49,9 +49,9 @@
   }
 
   // ---- Live champion stats -------------------------------------------------
-  // The deploy workflow rebuilds /BetaBridge/data/ from the latest evolution
+  // The deploy workflow rebuilds /AlphaBridge/data/ from the latest evolution
   // artifacts; refresh the baked numbers from there when reachable.
-  fetch("BetaBridge/data/evolution_latest.json")
+  fetch("AlphaBridge/data/evolution_latest.json")
     .then(function (res) { return res.ok ? res.json() : null; })
     .then(function (data) {
       if (!data || !data.evolution || !data.evolution.best_candidate) return;
@@ -69,12 +69,12 @@
     document.querySelectorAll("[data-stat-capacity]").forEach(function (el) {
       el.textContent = String(capacity);
     });
-    var label = document.querySelector("[data-bb-meter]");
+    var label = document.querySelector("[data-ab-meter]");
     if (label) label.textContent = String(active);
-    var bar = document.querySelector(".bb-meter-bar");
-    var fill = document.querySelector("[data-bb-meter-fill]");
-    var meter = document.querySelector(".bb-meter");
-    if (bar) bar.style.setProperty("--bb-seg", String(capacity));
+    var bar = document.querySelector(".ab-meter-bar");
+    var fill = document.querySelector("[data-ab-meter-fill]");
+    var meter = document.querySelector(".ab-meter");
+    if (bar) bar.style.setProperty("--ab-seg", String(capacity));
     if (fill) fill.style.setProperty("--fill", (active / capacity) * 100 + "%");
     if (meter) meter.setAttribute("aria-label", active + " of " + capacity + " rule slots in use");
   }
@@ -90,7 +90,7 @@
 
   // ---- Demo video ----------------------------------------------------------
   // Autoplay the muted demo while it is on screen, pause when it leaves.
-  var video = document.querySelector("[data-bb-autoplay]");
+  var video = document.querySelector("[data-ab-autoplay]");
   if (video && !reduceMotion && "IntersectionObserver" in window) {
     video.removeAttribute("controls");
     var watcher = new IntersectionObserver(

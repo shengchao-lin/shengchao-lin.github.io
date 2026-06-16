@@ -1,9 +1,9 @@
-"""Shrink the BetaBridge showcase screenshots.
+"""Shrink the AlphaBridge showcase screenshots.
 
 The UI is flat-color, so quantizing each PNG to an adaptive 256-color palette
 cuts size by ~3-4x with no visible loss. Requires Pillow (`pip install pillow`).
 
-Usage: python3 scripts/compress_betabridge_screenshots.py [dir]
+Usage: python3 scripts/compress_alphabridge_screenshots.py [dir]
 """
 
 from __future__ import annotations
@@ -26,4 +26,4 @@ def compress(directory: Path) -> None:
 
 
 if __name__ == "__main__":
-    compress(Path(sys.argv[1] if len(sys.argv) > 1 else "assets/images/betabridge"))
+    compress(Path(sys.argv[1] if len(sys.argv) > 1 else "assets/images/alphabridge"))

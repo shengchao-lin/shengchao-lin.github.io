@@ -1,16 +1,16 @@
-"""Bake live champion stats into betabridge.html at deploy time.
+"""Bake live champion stats into alphabridge.html at deploy time.
 
 The numbers in the showcase (champion fitness, genome size, evolved rule
 count, rule capacity) drift as evolution runs. The committed HTML holds
 placeholder values; the deploy workflow runs this script after building the
-BetaBridge subsite so every deploy ships numbers computed from the actual
-`BetaBridge/data/evolution_latest.json` artifact. The page's JS re-fetches the
+AlphaBridge subsite so every deploy ships numbers computed from the actual
+`AlphaBridge/data/evolution_latest.json` artifact. The page's JS re-fetches the
 same JSON at view time as a second freshness layer.
 
 Stdlib only. Exits 0 with a warning (placeholders stay) if the data is
 missing or oddly shaped; exits 1 only on real errors.
 
-Usage: python3 scripts/bake_betabridge_stats.py [--data BetaBridge/data/evolution_latest.json] [--page betabridge.html]
+Usage: python3 scripts/bake_alphabridge_stats.py [--data AlphaBridge/data/evolution_latest.json] [--page alphabridge.html]
 """
 
 from __future__ import annotations
@@ -56,8 +56,8 @@ def bake(page: Path, stats: dict) -> str:
     stat("rules", stats["rules"])
 
     html = re.sub(r"(<span data-stat-capacity>)[^<]*(</span>)", rf"\g<1>{stats['capacity']}\g<2>", html)
-    html = re.sub(r"(<b data-bb-meter>)[^<]*(</b>)", rf"\g<1>{stats['rules']}\g<2>", html)
-    html = re.sub(r"--bb-seg:\s*\d+", f"--bb-seg:{stats['capacity']}", html)
+    html = re.sub(r"(<b data-ab-meter>)[^<]*(</b>)", rf"\g<1>{stats['rules']}\g<2>", html)
+    html = re.sub(r"--ab-seg:\s*\d+", f"--ab-seg:{stats['capacity']}", html)
     html = re.sub(r"--fill:\s*[\d.]+%", f"--fill:{pct}%", html)
     html = re.sub(
         r'aria-label="\d+ of \d+ rule slots in use"',
@@ -70,8 +70,8 @@ def bake(page: Path, stats: dict) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--data", default="BetaBridge/data/evolution_latest.json")
-    parser.add_argument("--page", default="betabridge.html")
+    parser.add_argument("--data", default="AlphaBridge/data/evolution_latest.json")
+    parser.add_argument("--page", default="alphabridge.html")
     args = parser.parse_args()
 
     data_path = Path(args.data)
