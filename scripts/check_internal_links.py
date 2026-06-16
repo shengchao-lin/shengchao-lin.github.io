@@ -1,7 +1,7 @@
 """Verify every internal link/asset in the built site resolves to a real file.
 
 Scans all .html files under the site root (including the generated
-/BetaBridge/ subsite) for href/src/poster targets and fails (exit 1) if any
+/AlphaBridge/ subsite) for href/src/poster targets and fails (exit 1) if any
 internal target is missing — so a deploy can never ship internal 404s like an
 unshipped subsite page. External (http/https/mailto/tel), fragment-only, and
 data: URLs are ignored. Stdlib only.
