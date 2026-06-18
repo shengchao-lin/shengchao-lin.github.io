@@ -7,11 +7,11 @@ on:
       - master
   workflow_dispatch:
   repository_dispatch:
-    # Fired by BetaBridge's CI after a merge to its main branch, so the
+    # Fired by AlphaBridge's CI after a merge to its main branch, so the
     # showcase and read-only subsite refresh as soon as the engine changes.
-    types: [betabridge-updated]
+    types: [alphabridge-updated]
   schedule:
-    # Weekly refresh so the BetaBridge showcase tracks the latest UI and
+    # Weekly refresh so the AlphaBridge showcase tracks the latest UI and
     # evolution artifacts even without portfolio commits.
     - cron: "0 6 * * 1"
 
@@ -31,30 +31,30 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Clone BetaBridge
+      - name: Clone AlphaBridge
         run: |
-          git clone --depth 1 https://x-access-token:${{ secrets.GH_PAT }}@github.com/shengchao-lin/BetaBridge.git _betabridge_tmp
+          git clone --depth 1 https://x-access-token:${{ secrets.GH_PAT }}@github.com/shengchao-lin/AlphaBridge.git _alphabridge_tmp
 
-      - name: Build BetaBridge read-only static site
+      - name: Build AlphaBridge read-only static site
         # build_site.py snapshots the agreement/dashboard/evolution data into
-        # BetaBridge/data/, which both the read-only subsite and the showcase
+        # AlphaBridge/data/, which both the read-only subsite and the showcase
         # page's live stats consume.
         run: |
-          cd _betabridge_tmp
-          python3 -B scripts/build_site.py "$GITHUB_WORKSPACE/BetaBridge"
+          cd _alphabridge_tmp
+          python3 -B scripts/build_site.py "$GITHUB_WORKSPACE/AlphaBridge"
 
       - name: Bake live champion stats into the showcase
-        # The committed betabridge.html holds placeholder numbers; replace
+        # The committed alphabridge.html holds placeholder numbers; replace
         # them with values computed from the freshly built evolution artifact
         # so every deploy ships current stats even for no-JS visitors.
-        run: python3 -B scripts/bake_betabridge_stats.py
+        run: python3 -B scripts/bake_alphabridge_stats.py
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Refresh BetaBridge showcase screenshots and demo video
+      - name: Refresh AlphaBridge showcase screenshots and demo video
         # Best-effort: screenshots the *current* UI served by the freshly
         # cloned engine. If anything fails, the screenshots committed to the
         # repo are used instead, so a flaky browser never blocks a deploy.
@@ -63,7 +63,7 @@ jobs:
           npm install --no-save playwright
           npx playwright install --with-deps chromium
           python3 -m pip install --break-system-packages pillow || python3 -m pip install pillow
-          cd _betabridge_tmp
+          cd _alphabridge_tmp
           python3 main.py playground --no-browser --port 8765 &
           SERVER_PID=$!
           for i in $(seq 1 30); do
@@ -71,12 +71,12 @@ jobs:
             sleep 1
           done
           cd "$GITHUB_WORKSPACE"
-          node scripts/capture-betabridge-screenshots.mjs
-          python3 scripts/compress_betabridge_screenshots.py
+          node scripts/capture-alphabridge-screenshots.mjs
+          python3 scripts/compress_alphabridge_screenshots.py
           kill "$SERVER_PID"
 
       - name: Prune working files from the artifact
-        run: rm -rf _betabridge_tmp node_modules package.json package-lock.json
+        run: rm -rf _alphabridge_tmp node_modules package.json package-lock.json
 
       - name: Check internal links
         # Fatal: never deploy a site with internal 404s (e.g. a subsite page
