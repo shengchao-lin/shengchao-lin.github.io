@@ -3,7 +3,7 @@
     <a class="site-name" href="{{ "/" | relURL }}"><span class="site-mark" aria-hidden="true">S</span>{{ site.Title }}</a>
     <nav class="site-nav" aria-label="Main navigation">
       {{- range site.Menus.main }}
-      {{- $active := or ($.IsMenuCurrent "main" .) (eq $.Params.nav .Name) }}
+      {{- $active := $.IsMenuCurrent "main" . }}
       <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
       {{- end }}
     </nav>

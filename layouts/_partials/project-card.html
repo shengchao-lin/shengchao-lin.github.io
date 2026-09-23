@@ -9,8 +9,8 @@
     <h2><a href="{{ .Params.link | relURL }}">{{ .Title }}</a></h2>
     <p>{{ .Summary }}</p>
     {{- with .Params.tags }}
-    <div class="ab-chips">
-      {{- range . }}<span class="ab-chip ab-chip-{{ .color | default "green" }}">{{ .name }}</span>{{ end -}}
+    <div class="chips">
+      {{- range . }}<span class="chip chip-{{ .color | default "green" }}">{{ .name }}</span>{{ end -}}
     </div>
     {{- end }}
     {{- with .Params.links }}

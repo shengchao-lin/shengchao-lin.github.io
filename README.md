@@ -21,7 +21,6 @@ The first run takes about a minute while Hugo resizes the gallery photos. After 
 | Research, reading group, talks    | `content/research.md`                                                |
 | Projects                          | `content/projects/*.md` (one file per project card)                  |
 | Gallery photos and captions       | `content/gallery/index.md` + the JPGs in `content/gallery/`          |
-| AlphaBridge showcase page         | `content/alphabridge.html`                                           |
 | Nav menu, footer links, site title| `hugo.toml`                                                          |
 | CV                                | replace `static/files/Shengchao_Lin_CV.pdf`                          |
 | Colors, fonts, layout             | `assets/css/main.css` (color tokens at the top)                      |
@@ -39,7 +38,7 @@ The text below the `---` front matter is ordinary Markdown. The lists above it (
 ```
 content/     page text (Markdown + front matter) and photos
 layouts/     HTML templates (rarely need editing)
-assets/      CSS and the showcase JS (fingerprinted by Hugo)
-static/      files copied as-is: favicon, CV, AlphaBridge screenshots
-scripts/     deploy helpers for the AlphaBridge showcase
+assets/      CSS (fingerprinted by Hugo)
+static/      files copied as-is: favicon, CV, project screenshots
+scripts/     link checker used by the deploy
 ```

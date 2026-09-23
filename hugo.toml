@@ -45,10 +45,6 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
     pageRef = "/gallery"
     weight = 50
 
-[markup.goldmark.renderer]
-  # Allow inline HTML in Markdown (used by the AlphaBridge showcase page).
-  unsafe = true
-
 [imaging]
   resampleFilter = "Lanczos"
   [imaging.webp]
@@ -62,7 +58,3 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
   [caches.images]
     dir = ":resourceDir/_gen"
     maxAge = -1
-
-# content/alphabridge.html is raw HTML content; Hugo blocks HTML content files by default.
-[security]
-  allowContent = ['^text/(markdown|html)$']
