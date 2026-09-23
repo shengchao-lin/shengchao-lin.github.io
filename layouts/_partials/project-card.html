@@ -1,0 +1,22 @@
+{{- /* Card for a project page in content/projects/. Context: the project page. */ -}}
+<article class="project-card">
+  {{- with .Params.image }}
+  <a class="project-thumb" href="{{ $.Params.link | relURL }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ . | relURL }}" alt="{{ $.Params.image_alt }}" loading="lazy">
+  </a>
+  {{- end }}
+  <div class="project-body">
+    <h2><a href="{{ .Params.link | relURL }}">{{ .Title }}</a></h2>
+    <p>{{ .Summary }}</p>
+    {{- with .Params.tags }}
+    <div class="ab-chips">
+      {{- range . }}<span class="ab-chip ab-chip-{{ .color | default "green" }}">{{ .name }}</span>{{ end -}}
+    </div>
+    {{- end }}
+    {{- with .Params.links }}
+    <p class="project-links">
+      {{- range $i, $l := . }}{{ if $i }} <span aria-hidden="true">&middot;</span> {{ end }}<a href="{{ $l.url | relURL }}">{{ $l.name }}</a>{{ end -}}
+    </p>
+    {{- end }}
+  </div>
+</article>

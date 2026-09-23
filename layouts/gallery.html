@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ partial "page-intro.html" . }}
+<section class="photo-grid" aria-label="Photo gallery">
+  {{- range .Params.photos }}
+  {{- $caption := .caption }}
+  {{- with $.Resources.Get .file }}
+  {{- $full := .Resize "2000x webp" }}
+  <figure>
+    <a href="{{ $full.RelPermalink }}">{{ partial "photo.html" (dict "img" . "alt" $caption "widths" (slice 480 800 1200) "sizes" "(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw") }}</a>
+    <figcaption>{{ $caption }}</figcaption>
+  </figure>
+  {{- else }}
+  {{- errorf "gallery: photo %q not found in content/gallery/" .file }}
+  {{- end }}
+  {{- end }}
+</section>
+{{ end }}

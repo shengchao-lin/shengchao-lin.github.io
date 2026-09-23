@@ -1,7 +1,7 @@
 """Bake live champion stats into alphabridge.html at deploy time.
 
 The numbers in the showcase (champion fitness, genome size, evolved rule
-count, rule capacity) drift as evolution runs. The committed HTML holds
+count, rule capacity) drift as evolution runs. The source page (content/alphabridge.html) holds
 placeholder values; the deploy workflow runs this script after building the
 AlphaBridge subsite so every deploy ships numbers computed from the actual
 `AlphaBridge/data/evolution_latest.json` artifact. The page's JS re-fetches the
@@ -10,7 +10,7 @@ same JSON at view time as a second freshness layer.
 Stdlib only. Exits 0 with a warning (placeholders stay) if the data is
 missing or oddly shaped; exits 1 only on real errors.
 
-Usage: python3 scripts/bake_alphabridge_stats.py [--data AlphaBridge/data/evolution_latest.json] [--page alphabridge.html]
+Usage: python3 scripts/bake_alphabridge_stats.py [--data public/AlphaBridge/data/evolution_latest.json] [--page public/alphabridge.html]
 """
 
 from __future__ import annotations
@@ -70,8 +70,8 @@ def bake(page: Path, stats: dict) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--data", default="AlphaBridge/data/evolution_latest.json")
-    parser.add_argument("--page", default="alphabridge.html")
+    parser.add_argument("--data", default="public/AlphaBridge/data/evolution_latest.json")
+    parser.add_argument("--page", default="public/alphabridge.html")
     args = parser.parse_args()
 
     data_path = Path(args.data)

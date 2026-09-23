@@ -1,0 +1,73 @@
+{{ define "main-class" }}home{{ end }}
+{{ define "main" }}
+{{- $gallery := site.GetPage "/gallery" }}
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">{{ .Params.eyebrow }}</p>
+      <h1>{{ .Title }}</h1>
+      <div class="hero-lede">{{ .Content }}</div>
+      <div class="hero-actions">
+        {{- range after 1 site.Menus.main }}
+        <a class="btn{{ if eq .Name "About" }} btn-primary{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+        {{- end }}
+      </div>
+    </div>
+    {{- with .Resources.Get .Params.portrait }}
+    <figure class="hero-portrait">
+      <div class="portrait-frame">
+        {{ partial "photo.html" (dict "img" . "alt" site.Title "widths" (slice 400 800 1200) "sizes" "(max-width: 820px) 80vw, 28rem" "loading" "eager") }}
+      </div>
+      <figcaption>{{ $.Params.portrait_caption }}</figcaption>
+    </figure>
+    {{- end }}
+  </div>
+</section>
+
+{{- with .Params.path }}
+<section class="band career-path" aria-label="Career path">
+  <div class="band-inner split">
+    <div>
+      <p class="eyebrow">{{ .label }}</p>
+      <h2>{{ .heading }}</h2>
+    </div>
+    <ol class="path-steps">
+      {{- range .steps }}
+      <li><strong>{{ .place }}</strong><span>{{ .role }}</span></li>
+      {{- end }}
+    </ol>
+  </div>
+</section>
+{{- end }}
+
+{{- with site.GetPage .Params.featured_project }}
+<section class="band featured" aria-label="Featured project">
+  <div class="band-inner">
+    <div class="section-head">
+      <p class="eyebrow">Featured project</p>
+      <a class="more-link" href="{{ (site.GetPage "/projects").RelPermalink }}">All projects <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="featured-card">{{ partial "project-card.html" . }}</div>
+  </div>
+</section>
+{{- end }}
+
+{{- with .Params.photo_strip }}
+<section class="band photo-band" aria-label="Photography preview">
+  <div class="band-inner">
+    <div class="section-head">
+      <p class="eyebrow">Photography</p>
+      <a class="more-link" href="{{ $gallery.RelPermalink }}">Gallery <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="image-strip">
+      {{- range . }}
+      {{- $alt := .alt }}
+      {{- with $gallery.Resources.Get .file }}
+      <a href="{{ $gallery.RelPermalink }}">{{ partial "photo.html" (dict "img" . "alt" $alt "sizes" "(max-width: 820px) 100vw, 33vw") }}</a>
+      {{- end }}
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}
+{{ end }}

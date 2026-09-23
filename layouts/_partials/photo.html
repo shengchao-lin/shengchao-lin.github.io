@@ -1,0 +1,17 @@
+{{- /*
+  Responsive WebP <img> from an image resource.
+  Args (dict): img, alt, widths (default 480/960/1600), sizes, class, loading.
+  Widths larger than the original are skipped.
+*/ -}}
+{{- $img := .img -}}
+{{- $srcset := slice -}}
+{{- $src := "" -}}
+{{- range .widths | default (slice 480 960 1600) -}}
+  {{- if le . $img.Width -}}
+    {{- $r := $img.Resize (printf "%dx webp" .) -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink $r.Width) -}}
+    {{- if or (not $src) (le $r.Width 1000) }}{{ $src = $r }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+<img src="{{ $src.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="{{ .sizes | default "100vw" }}" width="{{ $src.Width }}" height="{{ $src.Height }}" alt="{{ .alt }}"{{ with .class }} class="{{ . }}"{{ end }} loading="{{ .loading | default "lazy" }}" decoding="async">
+{{- /* trailing */ -}}

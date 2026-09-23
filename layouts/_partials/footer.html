@@ -1,0 +1,10 @@
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span class="site-footer-name">{{ site.Title }}</span>
+    <nav class="site-footer-links" aria-label="Elsewhere">
+      {{- range site.Params.social }}
+      <a href="{{ .url | relURL }}">{{ .name }}</a>
+      {{- end }}
+    </nav>
+  </div>
+</footer>

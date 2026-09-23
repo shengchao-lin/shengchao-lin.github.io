@@ -2,7 +2,7 @@
 //
 // Usage:
 //   1. Start the AlphaBridge server:  python3 main.py playground --no-browser --port 8765
-//   2. node scripts/capture-alphabridge-screenshots.mjs [--base http://127.0.0.1:8765] [--out assets/images/alphabridge]
+//   2. node scripts/capture-alphabridge-screenshots.mjs [--base http://127.0.0.1:8765] [--out static/images/alphabridge]
 //
 // Requires the `playwright` package with the Chromium browser installed
 // (`npx playwright install chromium`). Used both locally and by the Pages
@@ -30,7 +30,7 @@ const argValue = (flag, fallback) => {
   return i >= 0 && args[i + 1] ? args[i + 1] : fallback;
 };
 const BASE = argValue("--base", "http://127.0.0.1:8765");
-const OUT = argValue("--out", "assets/images/alphabridge");
+const OUT = argValue("--out", "static/images/alphabridge");
 
 mkdirSync(OUT, { recursive: true });
 

@@ -26,4 +26,4 @@ def compress(directory: Path) -> None:
 
 
 if __name__ == "__main__":
-    compress(Path(sys.argv[1] if len(sys.argv) > 1 else "assets/images/alphabridge"))
+    compress(Path(sys.argv[1] if len(sys.argv) > 1 else "static/images/alphabridge"))
