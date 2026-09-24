@@ -4,41 +4,49 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal portfolio website for Shengchao Lin, built with **Hugo** (extended, version pinned in `.github/workflows/pages.yml`) and deployed to GitHub Pages by GitHub Actions. There are no Node/Ruby dependencies for the site itself. Content lives in Markdown files; shared UI lives in templates.
+Personal portfolio website for Shengchao Lin, served as a plain static GitHub Pages site. There is **no build step, no bundler, no Jekyll, and no dependencies** — the `.nojekyll` file disables Jekyll processing so GitHub Pages serves the repository root directly.
 
 ## Local Development
 
+Preview the site locally with:
+
 ```sh
-hugo server          # http://localhost:1313, live reload
-hugo --gc            # production build into public/
-python3 -B scripts/check_internal_links.py public   # same fatal link check CI runs
+python3 -m http.server 4173
 ```
 
-The first build takes about a minute to resize the gallery originals; results are cached in `resources/_gen/` (gitignored).
+Then open `http://127.0.0.1:4173/` in a browser. No installation required.
 
 ## Architecture
 
-- `hugo.toml` holds the site title, **main nav** (`[menus.main]`, the only place nav links are defined), footer/social links (`params.social`), and `uglyURLs = true`, so pages keep their original `.html` URLs (`/about.html`, `/gallery.html`, …). `projects/_index.md` sets `url: /projects.html` explicitly because sections ignore uglyURLs, and aliases the retired `/alphabridge.html` showcase URL to it.
-- `content/` has one file per page. Structured lists (experience, education, reading-group members/talks, gallery captions, project cards) are in each page's front matter; prose is the Markdown body.
-  - `_index.md` + `me.jpg` is the home page bundle (portrait). `gallery/index.md` + `Gallery-*.jpg` is the gallery bundle. Both set `build.publishResources: false`, so only resized WebP copies are published, never the multi-MB originals.
-  - `projects/*.md` are card data only (`build.render: never`): a static screenshot from `static/images/`, pastel tag chips, and links (AlphaBridge's card links to its GitHub repo). `archetypes/projects.md` is the template for `hugo new projects/x.md`.
-- `layouts/`: `baseof.html` (head/header/footer), `home.html`, `page.html`, `section.html` (projects list), and custom layouts `about.html`, `research.html`, `gallery.html`. Partials are in `layouts/_partials/`, including `photo.html` (responsive WebP `srcset`) and `timeline.html`.
-- `assets/css/main.css` is the single stylesheet, fingerprinted via Hugo Pipes. Color tokens are at the top, and dark mode redefines them under `prefers-color-scheme`. The palette is warm: paper `#f7f0e6`, ink `#2b2320`, terracotta accent `#a94a31`, sage `#56694c`. Headings use Fraunces (serif) and body text uses Inter, both from Google Fonts. Breakpoints are `900px`, `820px` and `560px`.
-- `static/` is copied verbatim: `favicon.ico`, `files/Shengchao_Lin_CV.pdf`, `images/alphabridge/play-table.png` (AlphaBridge card screenshot).
+All pages are standalone HTML files in the repo root. Shared structure (header nav, footer) is **manually duplicated** across each file — there is no templating engine or component system.
+
+**Pages:** `index.html`, `about.html`, `research.html`, `projects.html`, `gallery.html`
+
+**Single stylesheet:** `assets/css/style.css` — all styling lives here. Uses CSS custom properties defined at the top of the file:
+
+| Variable | Value | Role |
+|---|---|---|
+| `--ink` | `#1f2933` | Primary text |
+| `--muted` | `#65717f` | Secondary text |
+| `--paper` | `#f7f3ec` | Page background |
+| `--accent` | `#a64235` | Rust red (links, highlights) |
+| `--accent-2` | `#0d6f7c` | Teal (secondary accent) |
+
+Layout uses CSS Grid throughout. Responsive breakpoints are at `820px` and `560px`.
+
+**Static assets:** `assets/images/` (profile photo + 18 gallery photos), `assets/images/alphabridge/play-table.png` (AlphaBridge project card screenshot), `files/Shengchao_Lin_CV.pdf`
 
 ## GitHub Actions / Deployment
 
-The workflow at `.github/workflows/pages.yml` runs on push to main/master and on manual dispatch:
-1. Installs the pinned Hugo extended release and restores the `resources/_gen` image cache
-2. Builds into `public/`
-3. Fatal gate: `scripts/check_internal_links.py public` verifies every internal href/src resolves
-4. Uploads `public/` and deploys to GitHub Pages
+The workflow at `.github/workflows/pages.yml` runs on push to main/master and on manual dispatch. It needs no secrets:
+1. Fatal gate: `scripts/check_internal_links.py` verifies every internal href/src resolves, so internal 404s can never deploy
+2. Uploads the repository root and deploys it to GitHub Pages (Settings → Pages → Source must be **GitHub Actions**)
 
-It uses no secrets. AlphaBridge is no longer built live; its card is a committed screenshot plus a link to the repo.
+The AlphaBridge project card on `projects.html` is static: a committed screenshot, pastel chips (`.ab-chip*` in `style.css`), and a link to the GitHub repo. Nothing is fetched from the AlphaBridge repository at deploy time.
 
 ## Key Conventions
 
-- **Content vs. templates:** page text belongs in `content/` (Markdown/front matter), never hard-coded in `layouts/`. Shared UI changes happen once, in `layouts/` or `hugo.toml`.
-- **No JavaScript.** The site is pure HTML + CSS; dark mode is CSS-only.
-- **Images:** photos go through Hugo image processing via the `photo.html` partial. Don't reference originals directly. Gallery files are named `Gallery-N.jpg`; the gallery shows only the ones listed in `content/gallery/index.md` (e.g. `Gallery-10.jpg` is in the folder but unlisted).
-- **CV:** `static/files/Shengchao_Lin_CV.pdf`, linked from the About page (`params.cv`) and the footer (`params.social`).
+- **No templating:** When adding or changing nav links, footer links, or any shared UI, update every `.html` file — changes do not propagate automatically.
+- **No JavaScript.** The site is pure HTML + CSS.
+- **Images:** Gallery photos follow the naming pattern `Gallery-1.jpg` through `Gallery-18.jpg`. The gallery page references them by index.
+- **CV:** The PDF at `files/Shengchao_Lin_CV.pdf` is linked from `about.html` and the footer of every page.

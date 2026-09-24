@@ -1,12 +1,11 @@
 """Verify every internal link/asset in the built site resolves to a real file.
 
-Scans all .html files under the site root (including the generated
-/AlphaBridge/ subsite) for href/src/poster targets and fails (exit 1) if any
-internal target is missing — so a deploy can never ship internal 404s like an
-unshipped subsite page. External (http/https/mailto/tel), fragment-only, and
+Scans all .html files under the site root for href/src/poster targets and
+fails (exit 1) if any internal target is missing, so a deploy can never ship
+internal 404s. External (http/https/mailto/tel), fragment-only, and
 data: URLs are ignored. Stdlib only.
 
-Usage: python3 scripts/check_internal_links.py [site_root]   (CI: public)
+Usage: python3 scripts/check_internal_links.py [site_root]
 """
 
 from __future__ import annotations
