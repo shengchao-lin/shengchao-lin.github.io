@@ -28,7 +28,7 @@ The first build takes about a minute to resize the gallery originals; results ar
 
 ## GitHub Actions / Deployment
 
-The workflow at `.github/workflows/pages.yml` (Hugo version staged in `ci/pages.yml` until installed; see `ci/README.md`) runs on push to main/master and on manual dispatch:
+The workflow at `.github/workflows/pages.yml` runs on push to main/master and on manual dispatch:
 1. Installs the pinned Hugo extended release and restores the `resources/_gen` image cache
 2. Builds into `public/`
 3. Fatal gate: `scripts/check_internal_links.py public` verifies every internal href/src resolves
