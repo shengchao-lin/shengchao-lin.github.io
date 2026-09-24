@@ -22,7 +22,8 @@ ATTR_RE = re.compile(r"""(?:href|src|poster)\s*=\s*["']([^"']+)["']""", re.IGNOR
 
 def iter_html_files(root: Path):
     for path in root.rglob("*.html"):
-        if not any(part in SKIP_DIRS for part in path.parts):
+        # Relative to root, so a checkout under e.g. .claude/worktrees/ still scans.
+        if not any(part in SKIP_DIRS for part in path.relative_to(root).parts):
             yield path
 
 
