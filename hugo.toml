@@ -1,0 +1,60 @@
+# Site-wide settings. Page content lives in content/ — see README.md.
+baseURL = "https://shengchao-lin.github.io/"
+locale = "en-US"
+title = "Shengchao Lin"
+
+# Keep the original .html URLs (about.html, gallery.html, ...) so existing links keep working.
+uglyURLs = true
+disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
+
+[params]
+  description = "Personal website for Shengchao Lin."
+  cv = "files/Shengchao_Lin_CV.pdf"
+
+# Footer links, in order.
+[[params.social]]
+  name = "GitHub"
+  url = "https://github.com/shengchao-lin"
+[[params.social]]
+  name = "LinkedIn"
+  url = "https://www.linkedin.com/in/shengchao-lin/"
+[[params.social]]
+  name = "CV"
+  url = "files/Shengchao_Lin_CV.pdf"
+
+# Main navigation — the only place nav links are defined.
+[menus]
+  [[menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 20
+  [[menus.main]]
+    name = "Research"
+    pageRef = "/research"
+    weight = 30
+  [[menus.main]]
+    name = "Projects"
+    pageRef = "/projects"
+    weight = 40
+  [[menus.main]]
+    name = "Gallery"
+    pageRef = "/gallery"
+    weight = 50
+
+[imaging]
+  resampleFilter = "Lanczos"
+  [imaging.webp]
+    quality = 80
+
+[build]
+  [build.buildStats]
+    enable = false
+
+[caches]
+  [caches.images]
+    dir = ":resourceDir/_gen"
+    maxAge = -1

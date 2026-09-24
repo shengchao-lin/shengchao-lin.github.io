@@ -6,7 +6,7 @@ internal target is missing — so a deploy can never ship internal 404s like an
 unshipped subsite page. External (http/https/mailto/tel), fragment-only, and
 data: URLs are ignored. Stdlib only.
 
-Usage: python3 scripts/check_internal_links.py [site_root]
+Usage: python3 scripts/check_internal_links.py [site_root]   (CI: public)
 """
 
 from __future__ import annotations

@@ -4,68 +4,41 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal portfolio website for Shengchao Lin, served as a plain static GitHub Pages site. There is **no build step, no bundler, no Jekyll, and no dependencies** — the `.nojekyll` file disables Jekyll processing so GitHub Pages serves the repository root directly.
+Personal portfolio website for Shengchao Lin, built with **Hugo** (extended, version pinned in `.github/workflows/pages.yml`) and deployed to GitHub Pages by GitHub Actions. There are no Node/Ruby dependencies for the site itself. Content lives in Markdown files; shared UI lives in templates.
 
 ## Local Development
 
-Preview the site locally with:
-
 ```sh
-python3 -m http.server 4173
+hugo server          # http://localhost:1313, live reload
+hugo --gc            # production build into public/
+python3 -B scripts/check_internal_links.py public   # same fatal link check CI runs
 ```
 
-Then open `http://127.0.0.1:4173/` in a browser. No installation required.
+The first build takes about a minute to resize the gallery originals; results are cached in `resources/_gen/` (gitignored).
 
 ## Architecture
 
-All pages are standalone HTML files in the repo root. Shared structure (header nav, footer) is **manually duplicated** across each file — there is no templating engine or component system.
-
-**Pages:** `index.html`, `about.html`, `research.html`, `projects.html`, `gallery.html`, `alphabridge.html` (project showcase)
-
-**Single stylesheet:** `assets/css/style.css` — all styling lives here. Uses CSS custom properties defined at the top of the file:
-
-| Variable | Value | Role |
-|---|---|---|
-| `--ink` | `#1f2933` | Primary text |
-| `--muted` | `#65717f` | Secondary text |
-| `--paper` | `#f7f3ec` | Page background |
-| `--accent` | `#a64235` | Rust red (links, highlights) |
-| `--accent-2` | `#0d6f7c` | Teal (secondary accent) |
-
-Layout uses CSS Grid throughout. Responsive breakpoints are at `820px` and `560px`.
-
-**Static assets:** `assets/images/` (profile photo + 18 gallery photos), `assets/images/alphabridge/` (showcase screenshots + demo video, see below), `files/Shengchao_Lin_CV.pdf`
-
-## AlphaBridge showcase (`alphabridge.html`)
-
-Scroll showcase for the AlphaBridge project in a clean, premium product-design style: soft neutral dotted stage, floating window cards bleeding off pastel panels, pastel tag chips, a micro-label stat cluster, and a segmented capacity meter (generic modern-product cues only — no Apple trade dress). The matching project cards on `projects.html` reuse the chip styles. It is the one page with JavaScript (`assets/js/alphabridge.js`): scroll reveals, stat counters, in-view video autoplay, and a fetch of `AlphaBridge/data/evolution_latest.json` to refresh the baked champion stats. All motion is progressive enhancement — the page is fully readable with JS disabled and respects `prefers-reduced-motion`. Its styles live in the marked "AlphaBridge showcase" section at the end of `style.css`.
-
-The screenshots and demo video in `assets/images/alphabridge/` are committed fallbacks; the deploy workflow re-captures them from the current AlphaBridge UI on every deploy:
-
-```sh
-# Regenerate locally (requires Node + playwright with Chromium, and Pillow):
-cd ../AlphaBridge && python3 main.py playground --no-browser --port 8765 &
-node scripts/capture-alphabridge-screenshots.mjs
-python3 scripts/compress_alphabridge_screenshots.py
-```
+- `hugo.toml` holds the site title, **main nav** (`[menus.main]`, the only place nav links are defined), footer/social links (`params.social`), and `uglyURLs = true`, so pages keep their original `.html` URLs (`/about.html`, `/gallery.html`, …). `projects/_index.md` sets `url: /projects.html` explicitly because sections ignore uglyURLs, and aliases the retired `/alphabridge.html` showcase URL to it.
+- `content/` has one file per page. Structured lists (experience, education, reading-group members/talks, gallery captions, project cards) are in each page's front matter; prose is the Markdown body.
+  - `_index.md` + `me.jpg` is the home page bundle (portrait). `gallery/index.md` + `Gallery-*.jpg` is the gallery bundle. Both set `build.publishResources: false`, so only resized WebP copies are published, never the multi-MB originals.
+  - `projects/*.md` are card data only (`build.render: never`): a static screenshot from `static/images/`, pastel tag chips, and links (AlphaBridge's card links to its GitHub repo). `archetypes/projects.md` is the template for `hugo new projects/x.md`.
+- `layouts/`: `baseof.html` (head/header/footer), `home.html`, `page.html`, `section.html` (projects list), and custom layouts `about.html`, `research.html`, `gallery.html`. Partials are in `layouts/_partials/`, including `photo.html` (responsive WebP `srcset`) and `timeline.html`.
+- `assets/css/main.css` is the single stylesheet, fingerprinted via Hugo Pipes. Color tokens are at the top, and dark mode redefines them under `prefers-color-scheme`. The palette is warm: paper `#f7f0e6`, ink `#2b2320`, terracotta accent `#a94a31`, sage `#56694c`. Headings use Fraunces (serif) and body text uses Inter, both from Google Fonts. Breakpoints are `900px`, `820px` and `560px`.
+- `static/` is copied verbatim: `favicon.ico`, `files/Shengchao_Lin_CV.pdf`, `images/alphabridge/play-table.png` (AlphaBridge card screenshot).
 
 ## GitHub Actions / Deployment
 
-The workflow at `.github/workflows/pages.yml` runs on push to main/master, on a weekly cron (so the showcase tracks AlphaBridge), on manual dispatch, and on a `repository_dispatch` event of type `alphabridge-updated` (fired by AlphaBridge's CI after every merge to its main branch, so the showcase refreshes immediately):
-1. Clones the separate AlphaBridge repository (requires `GH_PAT` secret)
-2. Runs AlphaBridge's `scripts/build_site.py` to build the read-only static subsite (with `data/` JSON artifacts) into `/AlphaBridge/`
-3. Bakes live champion stats into `alphabridge.html` from the freshly built `AlphaBridge/data/evolution_latest.json` (`scripts/bake_alphabridge_stats.py`) — the committed numbers are placeholders, never hand-maintained facts
-4. Best-effort: serves the cloned engine locally, re-captures the showcase screenshots/demo video from the live UI, and compresses them (falls back to the committed assets on failure)
-5. Fatal gate: `scripts/check_internal_links.py` verifies every internal href/src across the built site (subsite included) resolves, so internal 404s can never deploy
-6. Deploys the combined result to GitHub Pages
+The workflow at `.github/workflows/pages.yml` runs on push to main/master and on manual dispatch:
+1. Installs the pinned Hugo extended release and restores the `resources/_gen` image cache
+2. Builds into `public/`
+3. Fatal gate: `scripts/check_internal_links.py public` verifies every internal href/src resolves
+4. Uploads `public/` and deploys to GitHub Pages
 
-The `/AlphaBridge/` directory is gitignored — it exists only inside the deploy artifact. Note: `play.html` in the subsite needs the Python backend and stays non-interactive when hosted statically; the showcase page is the public face of the project, and the subsite's dashboard/agreements pages work read-only from the data snapshots.
-
-When editing the workflow or adding new external repo integrations, note this `GH_PAT` dependency.
+It uses no secrets. AlphaBridge is no longer built live; its card is a committed screenshot plus a link to the repo.
 
 ## Key Conventions
 
-- **No templating:** When adding or changing nav links, footer links, or any shared UI, update every `.html` file — changes do not propagate automatically.
-- **No JavaScript** outside the AlphaBridge showcase: `assets/js/alphabridge.js` is the sanctioned exception (animation + live artifacts, progressive enhancement only). Don't add JS elsewhere without a strong reason.
-- **Images:** Gallery photos follow the naming pattern `Gallery-1.jpg` through `Gallery-18.jpg`. The gallery page references them by index.
-- **CV:** The PDF at `files/Shengchao_Lin_CV.pdf` is linked from `about.html` and the footer of every page.
+- **Content vs. templates:** page text belongs in `content/` (Markdown/front matter), never hard-coded in `layouts/`. Shared UI changes happen once, in `layouts/` or `hugo.toml`.
+- **No JavaScript.** The site is pure HTML + CSS; dark mode is CSS-only.
+- **Images:** photos go through Hugo image processing via the `photo.html` partial. Don't reference originals directly. Gallery files are named `Gallery-N.jpg`; the gallery shows only the ones listed in `content/gallery/index.md` (e.g. `Gallery-10.jpg` is in the folder but unlisted).
+- **CV:** `static/files/Shengchao_Lin_CV.pdf`, linked from the About page (`params.cv`) and the footer (`params.social`).

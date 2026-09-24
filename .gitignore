@@ -3,5 +3,7 @@
 node_modules/
 .DS_Store
 
-# Generated at deploy time by .github/workflows/pages.yml
-/AlphaBridge/
+# Hugo build output and image cache
+/public/
+/resources/_gen/
+.hugo_build.lock

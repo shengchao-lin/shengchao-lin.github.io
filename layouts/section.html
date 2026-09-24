@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{ partial "page-intro.html" . }}
+{{ .Content }}
+<div class="project-grid">
+  {{- range .RegularPages.ByWeight }}
+  {{ partial "project-card.html" . }}
+  {{- end }}
+</div>
+{{ end }}

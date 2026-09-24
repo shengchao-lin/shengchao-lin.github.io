@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{ partial "page-intro.html" . }}
+<div class="about-layout">
+  <article class="prose">
+    {{ .Content }}
+    <h2>Experience</h2>
+    {{ partial "timeline.html" (dict "items" .Params.experience) }}
+    <h2>Education</h2>
+    {{ partial "timeline.html" (dict "items" .Params.education) }}
+  </article>
+  <aside class="profile-card">
+    {{- with site.Home.Resources.Get site.Home.Params.portrait }}
+    {{ partial "photo.html" (dict "img" . "alt" site.Title "widths" (slice 400 800) "sizes" "18rem") }}
+    {{- end }}
+    <div class="profile-card-body">
+      <strong>{{ site.Title }}</strong>
+      <span>{{ site.Home.Params.eyebrow }}</span>
+      <a class="btn btn-primary" href="{{ site.Params.cv | relURL }}">Download my CV</a>
+      <nav class="profile-links" aria-label="Profiles">
+        {{- range site.Params.social }}{{ if ne .name "CV" }}<a href="{{ .url }}">{{ .name }}</a>{{ end }}{{ end -}}
+      </nav>
+    </div>
+  </aside>
+</div>
+{{ end }}
