@@ -6,7 +6,7 @@ internal target is missing — so a deploy can never ship internal 404s like an
 unshipped subsite page. External (http/https/mailto/tel), fragment-only, and
 data: URLs are ignored. Stdlib only.
 
-Usage: python3 scripts/check_internal_links.py [site_root]   (CI: public)
+Usage: python3 scripts/check_internal_links.py [site_root]
 """
 
 from __future__ import annotations
@@ -22,8 +22,7 @@ ATTR_RE = re.compile(r"""(?:href|src|poster)\s*=\s*["']([^"']+)["']""", re.IGNOR
 
 def iter_html_files(root: Path):
     for path in root.rglob("*.html"):
-        # Relative to root, so a checkout under e.g. .claude/worktrees/ still scans.
-        if not any(part in SKIP_DIRS for part in path.relative_to(root).parts):
+        if not any(part in SKIP_DIRS for part in path.parts):
             yield path
 
 
