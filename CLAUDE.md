@@ -20,7 +20,7 @@ Then open `http://127.0.0.1:4173/` in a browser. No installation required.
 
 All pages are standalone HTML files in the repo root. Shared structure (header nav, footer) is **manually duplicated** across each file — there is no templating engine or component system.
 
-**Pages:** `index.html`, `about.html`, `research.html`, `projects.html`, `gallery.html`, `alphabridge.html` (project showcase)
+**Pages:** `index.html`, `about.html`, `research.html`, `projects.html`, `gallery.html`
 
 **Single stylesheet:** `assets/css/style.css` — all styling lives here. Uses CSS custom properties defined at the top of the file:
 
@@ -34,38 +34,19 @@ All pages are standalone HTML files in the repo root. Shared structure (header n
 
 Layout uses CSS Grid throughout. Responsive breakpoints are at `820px` and `560px`.
 
-**Static assets:** `assets/images/` (profile photo + 18 gallery photos), `assets/images/alphabridge/` (showcase screenshots + demo video, see below), `files/Shengchao_Lin_CV.pdf`
-
-## AlphaBridge showcase (`alphabridge.html`)
-
-Scroll showcase for the AlphaBridge project in a clean, premium product-design style: soft neutral dotted stage, floating window cards bleeding off pastel panels, pastel tag chips, a micro-label stat cluster, and a segmented capacity meter (generic modern-product cues only — no Apple trade dress). The matching project cards on `projects.html` reuse the chip styles. It is the one page with JavaScript (`assets/js/alphabridge.js`): scroll reveals, stat counters, in-view video autoplay, and a fetch of `AlphaBridge/data/evolution_latest.json` to refresh the baked champion stats. All motion is progressive enhancement — the page is fully readable with JS disabled and respects `prefers-reduced-motion`. Its styles live in the marked "AlphaBridge showcase" section at the end of `style.css`.
-
-The screenshots and demo video in `assets/images/alphabridge/` are committed fallbacks; the deploy workflow re-captures them from the current AlphaBridge UI on every deploy:
-
-```sh
-# Regenerate locally (requires Node + playwright with Chromium, and Pillow):
-cd ../AlphaBridge && python3 main.py playground --no-browser --port 8765 &
-node scripts/capture-alphabridge-screenshots.mjs
-python3 scripts/compress_alphabridge_screenshots.py
-```
+**Static assets:** `assets/images/` (profile photo + 18 gallery photos), `assets/images/alphabridge/play-table.png` (AlphaBridge project card screenshot), `files/Shengchao_Lin_CV.pdf`
 
 ## GitHub Actions / Deployment
 
-The workflow at `.github/workflows/pages.yml` runs on push to main/master, on a weekly cron (so the showcase tracks AlphaBridge), on manual dispatch, and on a `repository_dispatch` event of type `alphabridge-updated` (fired by AlphaBridge's CI after every merge to its main branch, so the showcase refreshes immediately):
-1. Clones the separate AlphaBridge repository (requires `GH_PAT` secret)
-2. Runs AlphaBridge's `scripts/build_site.py` to build the read-only static subsite (with `data/` JSON artifacts) into `/AlphaBridge/`
-3. Bakes live champion stats into `alphabridge.html` from the freshly built `AlphaBridge/data/evolution_latest.json` (`scripts/bake_alphabridge_stats.py`) — the committed numbers are placeholders, never hand-maintained facts
-4. Best-effort: serves the cloned engine locally, re-captures the showcase screenshots/demo video from the live UI, and compresses them (falls back to the committed assets on failure)
-5. Fatal gate: `scripts/check_internal_links.py` verifies every internal href/src across the built site (subsite included) resolves, so internal 404s can never deploy
-6. Deploys the combined result to GitHub Pages
+The workflow at `.github/workflows/pages.yml` runs on push to main/master and on manual dispatch. It needs no secrets:
+1. Fatal gate: `scripts/check_internal_links.py` verifies every internal href/src resolves, so internal 404s can never deploy
+2. Uploads the repository root and deploys it to GitHub Pages (Settings → Pages → Source must be **GitHub Actions**)
 
-The `/AlphaBridge/` directory is gitignored — it exists only inside the deploy artifact. Note: `play.html` in the subsite needs the Python backend and stays non-interactive when hosted statically; the showcase page is the public face of the project, and the subsite's dashboard/agreements pages work read-only from the data snapshots.
-
-When editing the workflow or adding new external repo integrations, note this `GH_PAT` dependency.
+The AlphaBridge project card on `projects.html` is static: a committed screenshot, pastel chips (`.ab-chip*` in `style.css`), and a link to the GitHub repo. Nothing is fetched from the AlphaBridge repository at deploy time.
 
 ## Key Conventions
 
 - **No templating:** When adding or changing nav links, footer links, or any shared UI, update every `.html` file — changes do not propagate automatically.
-- **No JavaScript** outside the AlphaBridge showcase: `assets/js/alphabridge.js` is the sanctioned exception (animation + live artifacts, progressive enhancement only). Don't add JS elsewhere without a strong reason.
+- **No JavaScript.** The site is pure HTML + CSS.
 - **Images:** Gallery photos follow the naming pattern `Gallery-1.jpg` through `Gallery-18.jpg`. The gallery page references them by index.
 - **CV:** The PDF at `files/Shengchao_Lin_CV.pdf` is linked from `about.html` and the footer of every page.
