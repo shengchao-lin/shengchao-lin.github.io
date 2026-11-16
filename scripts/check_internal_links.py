@@ -1,6 +1,6 @@
 """Verify every internal link/asset in the built site resolves to a real file.
 
-Scans all .html files under the site root for href/src/poster targets and
+Scans all .html files under the site root for href/src/srcset/poster targets and
 fails (exit 1) if any internal target is missing, so a deploy can never ship
 internal 404s. External (http/https/mailto/tel), fragment-only, and
 data: URLs are ignored. Stdlib only.
@@ -17,6 +17,15 @@ from urllib.parse import urlsplit
 
 SKIP_DIRS = {".git", ".github", "node_modules", ".claude"}
 ATTR_RE = re.compile(r"""(?:href|src|poster)\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
+SRCSET_RE = re.compile(r"""srcset\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
+
+
+def iter_targets(html: str):
+    yield from ATTR_RE.findall(html)
+    for srcset in SRCSET_RE.findall(html):
+        for candidate in srcset.split(","):
+            if candidate.strip():
+                yield candidate.split()[0]
 
 
 def iter_html_files(root: Path):
@@ -47,7 +56,7 @@ def main() -> int:
     links = 0
     for page in iter_html_files(root):
         pages += 1
-        for raw in ATTR_RE.findall(page.read_text(encoding="utf-8", errors="replace")):
+        for raw in iter_targets(page.read_text(encoding="utf-8", errors="replace")):
             links += 1
             if not target_exists(root, page, raw):
                 missing.append((page.relative_to(root), raw))
