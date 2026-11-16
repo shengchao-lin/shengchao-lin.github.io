@@ -32,21 +32,23 @@ All pages are standalone HTML files in the repo root. Shared structure (header n
 | `--accent` | `#a64235` | Rust red (links, highlights) |
 | `--accent-2` | `#0d6f7c` | Teal (secondary accent) |
 
-Layout uses CSS Grid throughout. Responsive breakpoints are at `820px` and `560px`.
+These are the light-mode values; a `prefers-color-scheme: dark` block redefines the same tokens, so always style through the variables rather than hard-coded colors. Headings use `--font-serif` (Newsreader) and body text `--font-sans` (Inter), both loaded from Google Fonts in each page's `<head>`. Content is centered with the `.wrap` helper. Inner pages use `.page-intro` followed by `.split` sections (label column + content column). Layout uses CSS Grid throughout. Responsive breakpoints are at `820px` and `560px`.
 
-**Static assets:** `assets/images/` (profile photo + 18 gallery photos), `assets/images/alphabridge/play-table.png` (AlphaBridge project card screenshot), `files/Shengchao_Lin_CV.pdf`
+**Static assets:** `assets/images/` holds the camera originals (`Me-1.jpg` plus `Gallery-1..18.jpg`, with no 15; `Gallery-10` is not used on any page), `assets/images/alphabridge/play-table.png` (AlphaBridge project card screenshot), `files/Shengchao_Lin_CV.pdf`.
+
+**Web images:** the originals are 3–23 MB each and must never be referenced by a page. Pages use the resized copies in `assets/images/web/` (`<name>-800.jpg`, `-1600.jpg`, `-2400.jpg`) via `srcset`, with `width`/`height` attributes set to prevent layout shift. After adding or replacing a photo, run `sh scripts/make_web_images.sh` (macOS `sips`) and commit the outputs.
 
 ## GitHub Actions / Deployment
 
 The workflow at `.github/workflows/pages.yml` runs on push to main/master and on manual dispatch. It needs no secrets:
-1. Fatal gate: `scripts/check_internal_links.py` verifies every internal href/src resolves, so internal 404s can never deploy
+1. Fatal gate: `scripts/check_internal_links.py` verifies every internal href/src/srcset resolves, so internal 404s can never deploy
 2. Uploads the repository root and deploys it to GitHub Pages (Settings → Pages → Source must be **GitHub Actions**)
 
-The AlphaBridge project card on `projects.html` is static: a committed screenshot, pastel chips (`.ab-chip*` in `style.css`), and a link to the GitHub repo. Nothing is fetched from the AlphaBridge repository at deploy time.
+The AlphaBridge card on `projects.html` (and its teaser on `index.html`) is static: a committed screenshot, pastel chips (`.chip-*` in `style.css`), and a link to the GitHub repo. Nothing is fetched from the AlphaBridge repository at deploy time.
 
 ## Key Conventions
 
-- **No templating:** When adding or changing nav links, footer links, or any shared UI, update every `.html` file — changes do not propagate automatically.
+- **No templating:** When adding or changing nav links, footer links, the `<head>` block, or any shared UI, update every `.html` file — changes do not propagate automatically. Each page marks its own nav link with `aria-current="page"`.
 - **No JavaScript.** The site is pure HTML + CSS.
-- **Images:** Gallery photos follow the naming pattern `Gallery-1.jpg` through `Gallery-18.jpg`. The gallery page references them by index.
+- **Images:** Gallery photos follow the naming pattern `Gallery-N.jpg`. The gallery page shows the 800/1600 web copies and links each to its 2400 copy.
 - **CV:** The PDF at `files/Shengchao_Lin_CV.pdf` is linked from `about.html` and the footer of every page.

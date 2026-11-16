@@ -3,66 +3,141 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Personal website for Shengchao Lin.">
     <title>Shengchao Lin</title>
+    <meta name="description" content="Shengchao Lin — Senior Software Engineer on the Optimization Toolbox team at MathWorks, Ph.D. in Computational and Applied Mathematics from Rice University.">
+    <meta property="og:title" content="Shengchao Lin">
+    <meta property="og:description" content="Computational mathematics, optimization, and software.">
+    <meta property="og:image" content="https://shengchao-lin.github.io/assets/images/web/Me-1-1600.jpg">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#15191e" media="(prefers-color-scheme: dark)">
     <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <a class="site-name" href="index.html">Shengchao Lin</a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="research.html">Research</a>
-        <a href="projects.html">Projects</a>
-        <a href="gallery.html">Gallery</a>
-      </nav>
+      <div class="wrap">
+        <a class="site-name" href="index.html">Shengchao Lin</a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="index.html" aria-current="page">Home</a>
+          <a href="about.html">About</a>
+          <a href="research.html">Research</a>
+          <a href="projects.html">Projects</a>
+          <a href="gallery.html">Gallery</a>
+        </nav>
+      </div>
     </header>
 
-    <main class="home-stage">
-      <section class="home-hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Computational mathematics, optimization, and software</p>
-          <h1>Shengchao Lin</h1>
-          <p>Senior Software Engineer on the Optimization Toolbox team at MathWorks, with a Ph.D. in Computational and Applied Mathematics from Rice University.</p>
-          <div class="hero-actions">
-            <a href="about.html">About</a>
-            <a href="research.html">Research</a>
-            <a href="projects.html">Projects</a>
-            <a href="gallery.html">Gallery</a>
+    <main id="main">
+      <section class="hero">
+        <div class="wrap">
+          <div>
+            <p class="eyebrow">Computational mathematics, optimization, and software</p>
+            <h1>Shengchao Lin</h1>
+            <p class="hero-lede">Senior Software Engineer on the Optimization Toolbox team at MathWorks, with a Ph.D. in Computational and Applied Mathematics from Rice University.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="about.html">About me</a>
+              <a class="button" href="files/Shengchao_Lin_CV.pdf">CV (PDF)</a>
+              <div class="hero-social">
+                <a href="https://github.com/shengchao-lin">GitHub</a>
+                <a href="https://www.linkedin.com/in/shengchao-lin/">LinkedIn</a>
+              </div>
+            </div>
           </div>
+          <figure class="portrait">
+            <div class="portrait-frame"><img src="assets/images/web/Me-1-800.jpg"
+                 srcset="assets/images/web/Me-1-800.jpg 624w, assets/images/web/Me-1-1600.jpg 1248w"
+                 sizes="(max-width: 820px) 20rem, 24rem"
+                 width="624" height="800" alt="Portrait of Shengchao Lin" fetchpriority="high"></div>
+            <figcaption>Math, optimization, photography, and practical algorithms.</figcaption>
+          </figure>
         </div>
-        <figure>
-          <img src="assets/images/Me-1.jpg" alt="Shengchao Lin">
-          <figcaption>Math, optimization, photography, and practical algorithms.</figcaption>
-        </figure>
       </section>
 
-      <section class="career-path" aria-label="Career path">
-        <div>
-          <span>Path</span>
-          <h2>From mathematical analysis to deployed solvers</h2>
+      <section class="path section" aria-labelledby="path-title">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Path</p>
+              <h2 id="path-title">From mathematical analysis to deployed solvers</h2>
+            </div>
+            <a class="arrow-link" href="about.html">Full background</a>
+          </div>
+          <ol class="path-list">
+            <li class="card"><strong>MathWorks</strong><span>Senior Software Engineer, Optimization Toolbox team</span></li>
+            <li class="card"><strong>Rice University</strong><span>Ph.D., Computational and Applied Mathematics</span></li>
+            <li class="card"><strong>Peking University</strong><span>B.S., School of Mathematical Sciences</span></li>
+          </ol>
         </div>
-        <ol>
-          <li><strong>MathWorks</strong><span>Senior Software Engineer, Optimization Toolbox team</span></li>
-          <li><strong>Rice University</strong><span>Ph.D., Computational and Applied Mathematics</span></li>
-          <li><strong>Peking University</strong><span>B.S., School of Mathematical Sciences</span></li>
-        </ol>
       </section>
 
-      <section class="image-strip" aria-label="Photography preview">
-        <img src="assets/images/Gallery-17.jpg" alt="Sea arch at Waianapanapa State Park">
-        <img src="assets/images/Gallery-16.jpg" alt="Lake at Cochichuate State Park">
-        <img src="assets/images/Gallery-3.jpg" alt="Dead tree in Mesquite Flat Sand Dunes">
+      <section class="section" aria-labelledby="project-title">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Projects</p>
+              <h2 id="project-title">Featured project</h2>
+            </div>
+            <a class="arrow-link" href="projects.html">All projects</a>
+          </div>
+          <article class="feature card">
+            <a class="feature-media" href="https://github.com/shengchao-lin/AlphaBridge" tabindex="-1" aria-hidden="true">
+              <img src="assets/images/alphabridge/play-table.png" alt="" loading="lazy" width="3200" height="2000">
+            </a>
+            <div class="feature-body">
+              <h3>AlphaBridge</h3>
+              <p>A bridge AI lab that evolves its own tournament-legal bidding system from noise via self-play, then explains every call it makes &mdash; built entirely on the Python standard library.</p>
+              <ul class="chips" aria-label="Tags">
+                <li class="chip chip-green">Python stdlib</li>
+                <li class="chip chip-gold">Genetic evolution</li>
+                <li class="chip chip-blue">Bridge</li>
+              </ul>
+              <a class="arrow-link" href="https://github.com/shengchao-lin/AlphaBridge">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-flush" aria-labelledby="photo-title">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Photography</p>
+              <h2 id="photo-title">From the gallery</h2>
+            </div>
+            <a class="arrow-link" href="gallery.html">View all photos</a>
+          </div>
+          <ul class="photo-strip">
+            <li><figure>
+              <a href="gallery.html"><img src="assets/images/web/Gallery-17-800.jpg" srcset="assets/images/web/Gallery-17-800.jpg 534w, assets/images/web/Gallery-17-1600.jpg 1068w" sizes="(max-width: 820px) 100vw, 28rem" width="534" height="800" alt="Sea arch at Waianapanapa State Park" loading="lazy"></a>
+              <figcaption>Sea arch, Waianapanapa State Park</figcaption>
+            </figure></li>
+            <li><figure>
+              <a href="gallery.html"><img src="assets/images/web/Gallery-16-800.jpg" srcset="assets/images/web/Gallery-16-800.jpg 800w, assets/images/web/Gallery-16-1600.jpg 1600w" sizes="(max-width: 560px) 100vw, (max-width: 820px) 50vw, 24rem" width="800" height="433" alt="Lake at Cochichuate State Park" loading="lazy"></a>
+              <figcaption>Lake, Cochichuate State Park</figcaption>
+            </figure></li>
+            <li><figure>
+              <a href="gallery.html"><img src="assets/images/web/Gallery-3-800.jpg" srcset="assets/images/web/Gallery-3-800.jpg 800w, assets/images/web/Gallery-3-1600.jpg 1600w" sizes="(max-width: 560px) 100vw, (max-width: 820px) 50vw, 24rem" width="800" height="533" alt="Dead tree in Mesquite Flat Sand Dunes" loading="lazy"></a>
+              <figcaption>Dead tree in desert, Mesquite Flat Sand Dunes</figcaption>
+            </figure></li>
+          </ul>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span>Shengchao Lin</span>
-      <a href="https://github.com/shengchao-lin">GitHub</a>
-      <a href="https://www.linkedin.com/in/shengchao-lin/">LinkedIn</a>
-      <a href="files/Shengchao_Lin_CV.pdf">CV</a>
+      <div class="wrap">
+        <span class="footer-name">Shengchao Lin</span>
+        <nav class="footer-links" aria-label="Elsewhere">
+          <a href="https://github.com/shengchao-lin">GitHub</a>
+          <a href="https://www.linkedin.com/in/shengchao-lin/">LinkedIn</a>
+          <a href="files/Shengchao_Lin_CV.pdf">CV</a>
+        </nav>
+      </div>
     </footer>
   </body>
 </html>

@@ -1,24 +1,65 @@
 <!doctype html>
 <html lang="en">
-  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Projects | Shengchao Lin</title><link rel="icon" href="favicon.ico"><link rel="stylesheet" href="assets/css/style.css"></head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects | Shengchao Lin</title>
+    <meta name="description" content="Personal and side projects by Shengchao Lin, including AlphaBridge.">
+    <meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#15191e" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
   <body>
-    <header class="site-header"><a class="site-name" href="index.html">Shengchao Lin</a><nav class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="research.html">Research</a><a href="projects.html">Projects</a><a href="gallery.html">Gallery</a></nav></header>
-    <main class="content-shell">
-      <header class="page-intro"><h1>Projects</h1><p>Personal and side projects.</p></header>
-      <div class="project-grid">
-        <article class="project-card">
-          <a class="project-thumb" href="https://github.com/shengchao-lin/AlphaBridge" aria-label="AlphaBridge on GitHub">
-            <img src="assets/images/alphabridge/play-table.png" alt="The AlphaBridge play table mid-deal" loading="lazy" width="3200" height="2000">
-          </a>
-          <div class="project-body">
-            <h2><a href="https://github.com/shengchao-lin/AlphaBridge">AlphaBridge</a></h2>
-            <p>A bridge AI lab that evolves its own tournament-legal bidding system from noise via self-play, then explains every call it makes &mdash; built entirely on the Python standard library.</p>
-            <div class="ab-chips"><span class="ab-chip ab-chip-green">Python stdlib</span><span class="ab-chip ab-chip-gold">Genetic evolution</span><span class="ab-chip ab-chip-blue">Bridge</span></div>
-            <p class="project-links"><a href="https://github.com/shengchao-lin/AlphaBridge">GitHub</a></p>
-          </div>
-        </article>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="site-name" href="index.html">Shengchao Lin</a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="research.html">Research</a>
+          <a href="projects.html" aria-current="page">Projects</a>
+          <a href="gallery.html">Gallery</a>
+        </nav>
       </div>
+    </header>
+
+    <main id="main" class="wrap">
+      <header class="page-intro">
+        <h1>Projects</h1>
+        <p>Personal and side projects.</p>
+      </header>
+
+      <article class="project-card card">
+        <a class="project-thumb" href="https://github.com/shengchao-lin/AlphaBridge" tabindex="-1" aria-hidden="true">
+          <img src="assets/images/alphabridge/play-table.png" alt="The AlphaBridge play table mid-deal" width="3200" height="2000">
+        </a>
+        <div class="project-body">
+          <h2><a href="https://github.com/shengchao-lin/AlphaBridge">AlphaBridge</a></h2>
+          <p>A bridge AI lab that evolves its own tournament-legal bidding system from noise via self-play, then explains every call it makes &mdash; built entirely on the Python standard library.</p>
+          <ul class="chips" aria-label="Tags">
+            <li class="chip chip-green">Python stdlib</li>
+            <li class="chip chip-gold">Genetic evolution</li>
+            <li class="chip chip-blue">Bridge</li>
+          </ul>
+          <a class="arrow-link" href="https://github.com/shengchao-lin/AlphaBridge">View on GitHub</a>
+        </div>
+      </article>
     </main>
-    <footer class="site-footer"><span>Shengchao Lin</span><a href="https://github.com/shengchao-lin">GitHub</a><a href="https://www.linkedin.com/in/shengchao-lin/">LinkedIn</a><a href="files/Shengchao_Lin_CV.pdf">CV</a></footer>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span class="footer-name">Shengchao Lin</span>
+        <nav class="footer-links" aria-label="Elsewhere">
+          <a href="https://github.com/shengchao-lin">GitHub</a>
+          <a href="https://www.linkedin.com/in/shengchao-lin/">LinkedIn</a>
+          <a href="files/Shengchao_Lin_CV.pdf">CV</a>
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>
